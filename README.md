@@ -22,8 +22,7 @@ The following functionality is completed:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+[Link to GIF Walkthrough Write a Tweet] (https://imgur.com/a/sOdtJ)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
