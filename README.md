@@ -17,6 +17,7 @@ The following functionality is completed:
 * [ ] User can **share about an earthquake happening on social media facebook/twitter**
 * [ ] User can **make themself safe or send SOS info**
 
+[wireframe link](https://www.fluidui.com/editor/live/)
 
 ## Video Walkthrough
 
