@@ -1,7 +1,11 @@
 package com.codepath.earthquakemonitor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.codepath.earthquakemonitor.JsonHttpResponseHandler.EarthquakesJsonHttpResponseHandler;
 import com.codepath.earthquakemonitor.models.Filters;
@@ -17,6 +21,16 @@ public class MainActivity extends AppCompatActivity {
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
+        // Handle click sign up button
+        TextView btnSignUp = (TextView) findViewById(R.id.tvSignup);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(i);
+            }
+        });
 
         ////Piece of code to test earthquake API /////////////////////////////////////////
         EarthquakeClient client = EarthquakeClient.getInstance(this);
@@ -29,4 +43,5 @@ public class MainActivity extends AppCompatActivity {
         client.getEarthquakeAroundPointWithFilter(128.2355, 3.5887, filter, handler);
         ///////////////////////////////////////////////////////////////////////////////////
     }
+
 }

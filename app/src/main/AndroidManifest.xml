@@ -23,6 +23,7 @@
             android:name="io.fabric.ApiKey"
             android:value="93ebb85ed94385899285aef1209962eef694076b" />
 
+        <activity android:name=".SignUpActivity"></activity>
     </application>
 
 </manifest>
