@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -68,6 +69,7 @@ public class MapActivity extends AppCompatActivity
             mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION);
         }
 
+        // Create the map fragment
         mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
         if (mapFragment != null) {
             mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -79,6 +81,9 @@ public class MapActivity extends AppCompatActivity
         } else {
             Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
         }
+
+        //TODO Create the earthquake list fragment
+
 
     }
 
