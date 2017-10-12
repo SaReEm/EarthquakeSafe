@@ -55,10 +55,16 @@ dependencies {
     // Android Async Http for sending async network requests
     compile 'com.loopj.android:android-async-http:1.4.9'
 
+    compile 'com.google.android.gms:play-services-maps:11.0.1'
+    compile 'com.google.android.gms:play-services-location:11.0.1'
+
+    compile 'com.github.hotchemi:permissionsdispatcher:2.4.0'
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.4.0'
+
     compile 'com.parse.bolts:bolts-android:1.4.0'
     compile 'com.parse:parse-android:1.16.3'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
-    compile 'com.google.firebase:firebase-messaging:9.4.0'
+    compile 'com.google.firebase:firebase-messaging:11.0.1'
 }
 apply plugin: 'com.google.gms.google-services'
 
