@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
             {
                 Intent i = new Intent(MainActivity.this, SignUpActivity.class);
                 startActivity(i);
+                // uncomment to test push
+                //PushTest.sendPushTest();
             }
         });
 

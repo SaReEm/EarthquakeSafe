@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "234316005296",
+    "firebase_url": "https://my-project-1507695416400.firebaseio.com",
+    "project_id": "my-project-1507695416400",
+    "storage_bucket": "my-project-1507695416400.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234316005296:android:9091323358962781",
+        "android_client_info": {
+          "package_name": "com.codepath.earthquakemonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234316005296-4sfjvijcni1as5muhgc02i2je1o7i7qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdu4HZSb9dBPk1MpoQUf-rDPnCg71KMUE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
