@@ -4,11 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.codepath.earthquakemonitor.JsonHttpResponseHandler.EarthquakesJsonHttpResponseHandler;
-import com.codepath.earthquakemonitor.models.Filters;
 import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;

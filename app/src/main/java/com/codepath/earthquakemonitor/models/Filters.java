@@ -6,6 +6,16 @@ package com.codepath.earthquakemonitor.models;
 
 public class Filters {
 
+    private static Filters filter;
+
+    public static Filters getInstance(){
+
+        if(filter == null){
+            filter = new Filters();
+        }
+        return filter;
+    }
+
     private boolean useMinMagnitude;
     private boolean useStartTime;
     private boolean useDistance;
@@ -16,14 +26,14 @@ public class Filters {
     private Double distance;
     private Double depth; //do we want min or max depth?
 
-    public void Filters(){
+    private void Filters(){
         useMinMagnitude = false;
         useStartTime = false;
         useDistance = false;
         useDepth = false;
     }
 
-    public void Filters(Double minMagnitude, String startTime, Double distance){
+    private void Filters(Double minMagnitude, String startTime, Double distance){
         this.minMagnitude = minMagnitude;
         this.startTime = startTime;
         this.distance = distance;
@@ -33,7 +43,7 @@ public class Filters {
         this.useDistance = true;
     }
 
-    public void Filters(Double minMagnitude, String startTime, Double distance, Double depth){
+    private void Filters(Double minMagnitude, String startTime, Double distance, Double depth){
         this.minMagnitude = minMagnitude;
         this.startTime = startTime;
         this.distance = distance;
