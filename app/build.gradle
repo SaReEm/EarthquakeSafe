@@ -50,9 +50,13 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
         transitive = true;
     }
-    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:design:26.+'
     compile 'com.jakewharton:butterknife:7.0.1'
     // Android Async Http for sending async network requests
     compile 'com.loopj.android:android-async-http:1.4.9'
 
+    compile 'com.parse.bolts:bolts-android:1.4.0'
+    compile 'com.parse:parse-android:1.16.3'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1' // for logging API calls to LogCat
 }
+
