@@ -35,8 +35,8 @@ public class ParseApplication extends Application {
                 .server("https://earthquakesafe.herokuapp.com/parse/").build());
 
         // New test creation of object below
-        ParseObject testObject = new ParseObject("TestObject");
+        /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        testObject.saveInBackground();*/
     }
 }
