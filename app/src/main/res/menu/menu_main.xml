@@ -3,7 +3,7 @@
     <item
         android:id="@+id/miFriends"
         android:icon="@drawable/ic_friends"
-        app:showAsAction="ifRoom"
+        app:showAsAction="ifRoom|withText"
         android:title="Friends">
     </item>
     <item
@@ -11,5 +11,11 @@
         android:icon="@drawable/ic_profile"
         app:showAsAction="ifRoom|withText"
         android:title="Profile">
+    </item>
+    <item
+        app:showAsAction="ifRoom|withText"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"
+        android:id="@+id/miSettings">
     </item>
 </menu>

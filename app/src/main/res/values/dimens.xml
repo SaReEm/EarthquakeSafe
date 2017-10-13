@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="filterSettingFontSize">24sp</dimen>
+    <dimen name="filterSettingsMarginTop">20dp</dimen>
+    <dimen name="filterSeekBarWidth">300dp</dimen>
+</resources>

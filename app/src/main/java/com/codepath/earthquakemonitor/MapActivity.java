@@ -2,6 +2,8 @@ package com.codepath.earthquakemonitor;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.codepath.earthquakemonitor.fragments.FilterDialogFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -115,6 +118,11 @@ public class MapActivity extends AppCompatActivity
             // Start profile activity
             Intent i = new Intent(this, ProfileActivity.class);
             startActivity(i);
+            return true;
+        } else if (id == R.id.miSettings) {
+            FragmentManager fm = getSupportFragmentManager();
+            FilterDialogFragment filterDialogFragment = FilterDialogFragment.newInstance();
+            filterDialogFragment.show(fm, "fragment_filters");
             return true;
         }
         return super.onOptionsItemSelected(item);
