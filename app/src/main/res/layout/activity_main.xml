@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codepath.earthquakemonitor.MainActivity">
+    tools:context="com.codepath.earthquakemonitor.LoginActivity">
 
     <LinearLayout
         android:layout_margin="20dp"
@@ -57,6 +57,14 @@
             android:background="#be72bfe4"
             android:textColor="@android:color/white"
             android:textSize="24dp" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_fblogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
 
         <TextView
             android:onClick="signUp"

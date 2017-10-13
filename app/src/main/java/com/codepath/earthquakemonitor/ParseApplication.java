@@ -3,6 +3,7 @@ package com.codepath.earthquakemonitor;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 
 import okhttp3.OkHttpClient;
@@ -33,6 +34,7 @@ public class ParseApplication extends Application {
                 .clientKey(null)  // set explicitly unless clientKey is explicitly configured on Parse server
                 .clientBuilder(builder)
                 .server("https://earthquakesafe.herokuapp.com/parse/").build());
+        ParseFacebookUtils.initialize(this);
 
         // New test creation of object below
         /*ParseObject testObject = new ParseObject("TestObject");
