@@ -2,6 +2,7 @@ package com.codepath.earthquakemonitor;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -37,6 +38,8 @@ import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
+
+import android.support.v7.widget.Toolbar;
 
 @RuntimePermissions
 public class MapActivity extends AppCompatActivity
@@ -110,6 +113,8 @@ public class MapActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.miProfile) {
             // Start profile activity
+            Intent i = new Intent(this, ProfileActivity.class);
+            startActivity(i);
             return true;
         }
         return super.onOptionsItemSelected(item);
