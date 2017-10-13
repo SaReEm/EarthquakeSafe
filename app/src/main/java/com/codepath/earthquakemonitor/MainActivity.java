@@ -11,6 +11,8 @@ import com.crashlytics.android.Crashlytics;
 
 import io.fabric.sdk.android.Fabric;
 
+import android.support.v7.widget.Toolbar;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
