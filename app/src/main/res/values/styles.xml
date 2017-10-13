@@ -5,7 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorControlNormal">#c5c5c5</item>
-        <item name="colorControlActivated">#FFFFFF</item>
+        <item name="colorControlNormal">#b4dfe7</item>
+        <item name="colorControlActivated">#faf8f8</item>
+        <item name="android:textColor">#ffffffff</item>
     </style>
 </resources>

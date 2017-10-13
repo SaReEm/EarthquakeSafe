@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:gravity="center"
+        android:id="@+id/tvMagnitude"
+        android:text="Magnitude"
+        android:textSize="@dimen/filterSettingFontSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:layout_below="@id/tvMagnitude"
+        android:id="@+id/seekBarMagnitude"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="@dimen/filterSeekBarWidth"
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:progress="3" />
+
+    <TextView
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:textSize="@dimen/filterSettingFontSize"
+        android:gravity="center"
+        android:layout_below="@id/seekBarMagnitude"
+        android:id="@+id/tvStarttime"
+        android:text="Start Time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <!--TODO DatePicker and TimePicker on another fragment-->
+
+    <TextView
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:textSize="@dimen/filterSettingFontSize"
+        android:gravity="center"
+        android:layout_below="@id/tvStarttime"
+        android:id="@+id/tvDistance"
+        android:text="Distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:layout_below="@id/tvDistance"
+        android:id="@+id/seekBarDistance"
+        android:layout_width="@dimen/filterSeekBarWidth"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:textSize="@dimen/filterSettingFontSize"
+        android:gravity="center"
+        android:layout_below="@id/seekBarDistance"
+        android:id="@+id/tvDepth"
+        android:text="Depth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <SeekBar
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:layout_below="@id/tvDepth"
+        android:id="@+id/seekBarDepth"
+        android:layout_width="@dimen/filterSeekBarWidth"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:layout_below="@id/seekBarDepth"
+        android:id="@+id/btnSaveFilters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnSaveFilters" />
+
+</RelativeLayout>
