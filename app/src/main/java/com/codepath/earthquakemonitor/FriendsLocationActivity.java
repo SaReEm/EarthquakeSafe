@@ -119,6 +119,11 @@ public class FriendsLocationActivity extends AppCompatActivity
             FilterDialogFragment filterDialogFragment = FilterDialogFragment.newInstance();
             filterDialogFragment.show(fm, "fragment_filters");
             return true;
+        } else if (id == R.id.miFriends) {
+            // Start friends activity
+            Intent i = new Intent(this, FriendsListActivity.class);
+            startActivity(i);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
