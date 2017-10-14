@@ -1,16 +1,13 @@
 package com.codepath.earthquakemonitor;
 
-import android.Manifest;
 import android.app.Dialog;
-import android.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.location.Location;
-import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -42,19 +39,16 @@ import permissions.dispatcher.RuntimePermissions;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-import android.support.v7.widget.Toolbar;
-
 @RuntimePermissions
-public class MapActivity extends AppCompatActivity
+public class FriendsLocationActivity extends AppCompatActivity
 {
-
+    // Map parameters
     private SupportMapFragment mapFragment;
     private GoogleMap map;
     private LocationRequest mLocationRequest;
     Location mCurrentLocation;
     private long UPDATE_INTERVAL = 60000;  /* 60 secs */
     private long FASTEST_INTERVAL = 5000; /* 5 secs */
-
     private final static String KEY_LOCATION = "location";
 
     /*
@@ -63,10 +57,12 @@ public class MapActivity extends AppCompatActivity
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_view);
+        setContentView(R.layout.activity_friends_location);
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,10 +70,11 @@ public class MapActivity extends AppCompatActivity
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
 
+        // Check GOOGLE MAP API key
         if (TextUtils.isEmpty(getResources().getString(R.string.google_maps_api_key))) {
             throw new IllegalStateException("You forgot to supply a Google Maps API key");
         }
-
+        // Get the location
         if (savedInstanceState != null && savedInstanceState.keySet().contains(KEY_LOCATION)) {
             // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
             // is not null.
@@ -96,9 +93,6 @@ public class MapActivity extends AppCompatActivity
         } else {
             Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
         }
-
-        //TODO Create the earthquake list fragment
-
 
     }
 
@@ -120,6 +114,7 @@ public class MapActivity extends AppCompatActivity
             startActivity(i);
             return true;
         } else if (id == R.id.miSettings) {
+            // Start filter fragment
             FragmentManager fm = getSupportFragmentManager();
             FilterDialogFragment filterDialogFragment = FilterDialogFragment.newInstance();
             filterDialogFragment.show(fm, "fragment_filters");
@@ -138,8 +133,8 @@ public class MapActivity extends AppCompatActivity
         if (map != null) {
             // Map is ready
             Toast.makeText(this, "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
-            MapActivityPermissionsDispatcher.getMyLocationWithCheck(this);
-            MapActivityPermissionsDispatcher.startLocationUpdatesWithCheck(this);
+            FriendsLocationActivityPermissionsDispatcher.getMyLocationWithCheck(this);
+            FriendsLocationActivityPermissionsDispatcher.startLocationUpdatesWithCheck(this);
         } else {
             Toast.makeText(this, "Error - Map was null!!", Toast.LENGTH_SHORT).show();
         }
@@ -148,10 +143,10 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        MapActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        FriendsLocationActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
-    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    @NeedsPermission({android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION})
     void getMyLocation() {
         //noinspection MissingPermission
         map.setMyLocationEnabled(true);
@@ -170,7 +165,7 @@ public class MapActivity extends AppCompatActivity
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d("MapActivity", "Error trying to get last GPS location");
+                        Log.d("FriendsLocationActivity", "Error trying to get last GPS location");
                         e.printStackTrace();
                     }
                 });
@@ -231,10 +226,10 @@ public class MapActivity extends AppCompatActivity
         } else {
             Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
         }
-        MapActivityPermissionsDispatcher.startLocationUpdatesWithCheck(this);
+        FriendsLocationActivityPermissionsDispatcher.startLocationUpdatesWithCheck(this);
     }
 
-    @NeedsPermission({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION})
+    @NeedsPermission({android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION})
     protected void startLocationUpdates() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
