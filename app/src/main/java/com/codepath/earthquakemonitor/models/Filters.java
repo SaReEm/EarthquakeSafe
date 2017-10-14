@@ -24,12 +24,18 @@ public class Filters {
     private int minMagnitude;
     private String startTime;
     private int distance;
-    private int depth; //do we want min or max depth?
+    private int maxDepth; //max maxDepth
 
-    private void Filters(){
-        useMinMagnitude = false;
-        useStartTime = false;
-        useDistance = false;
+    private Filters(){
+
+        minMagnitude = 2;
+        distance = 60;
+        //todo have a time like in the last 2 months instead of hard coded
+        startTime = "2017-05-01";
+
+        useMinMagnitude = true;
+        useStartTime = true;
+        useDistance = true;
         useDepth = false;
     }
 
@@ -47,7 +53,19 @@ public class Filters {
         this.minMagnitude = minMagnitude;
         this.startTime = startTime;
         this.distance = distance;
-        this.depth = depth;
+        this.maxDepth = depth;
+    }
+
+    private void initFilters(){
+        minMagnitude = 2;
+        distance = 60;
+        //todo have a time like in the last 2 months instead of hard coded
+        startTime = "2017-05-01";
+
+        useMinMagnitude = true;
+        useStartTime = true;
+        useDistance = true;
+        useDepth = false;
     }
 
     public void resetFilters(){
@@ -119,12 +137,12 @@ public class Filters {
         this.useDistance = true;
     }
 
-    public int getDepth() {
-        return depth;
+    public int getMaxDepth() {
+        return maxDepth;
     }
 
-    public void setDepth(int depth) {
-        this.depth = depth;
+    public void setMaxDepth(int maxDepth) {
+        this.maxDepth = maxDepth;
         this.useDepth = true;
 
     }

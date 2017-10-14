@@ -95,7 +95,7 @@ public class FilterDialogFragment extends DialogFragment
 
             }
         });
-        sbDepth.setProgress(filter.getDepth());
+        sbDepth.setProgress(filter.getMaxDepth());
         sbDepth.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -145,7 +145,7 @@ public class FilterDialogFragment extends DialogFragment
             Log.d("saveFiltersSettings", "Modify filter distance = " + currentDistance);
         }
         if(modifiedDepth){
-            filter.setDepth(currentDepth);
+            filter.setMaxDepth(currentDepth);
             Log.d("saveFiltersSettings", "Modify filter depth = " + currentDepth);
         }
     }

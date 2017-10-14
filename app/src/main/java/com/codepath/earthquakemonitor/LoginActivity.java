@@ -11,20 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.facebook.login.widget.LoginButton;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
-
-import static android.R.attr.permission;
 
 public class LoginActivity extends AppCompatActivity {
     EditText etName;
@@ -83,15 +77,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        ////Piece of code to test earthquake API /////////////////////////////////////////
+        //Piece of code to test earthquake API /////////////////////////////////////////
 //        EarthquakeClient client = EarthquakeClient.getInstance(this);
 //        EarthquakesJsonHttpResponseHandler handler = new EarthquakesJsonHttpResponseHandler();
-//        Double currentLongitude = 128.2355;
-//        Double currentLatitude = 3.5887;
-//        Filters filter = new Filters();
-//        filter.setDistance(20.0);
-//        filter.setStartTime("2017-01-01");
-//        client.getEarthquakeAroundPointWithFilter(128.2355, 3.5887, filter, handler);
+//        Double currentLatitude = -122.077655;
+//        Double currentLongitude = 37.395605;
+//        Filters filter = Filters.getInstance();
+//        client.getEarthquakeAroundPointWithFilter(currentLatitude, currentLongitude, filter, handler);
 
     }
 
