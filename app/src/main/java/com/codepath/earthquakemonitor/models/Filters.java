@@ -21,10 +21,10 @@ public class Filters {
     private boolean useDistance;
     private boolean useDepth;
 
-    private Double minMagnitude;
+    private int minMagnitude;
     private String startTime;
-    private Double distance;
-    private Double depth; //do we want min or max depth?
+    private int distance;
+    private int depth; //do we want min or max depth?
 
     private void Filters(){
         useMinMagnitude = false;
@@ -33,7 +33,7 @@ public class Filters {
         useDepth = false;
     }
 
-    private void Filters(Double minMagnitude, String startTime, Double distance){
+    private void Filters(int minMagnitude, String startTime, int distance){
         this.minMagnitude = minMagnitude;
         this.startTime = startTime;
         this.distance = distance;
@@ -43,7 +43,7 @@ public class Filters {
         this.useDistance = true;
     }
 
-    private void Filters(Double minMagnitude, String startTime, Double distance, Double depth){
+    private void Filters(int minMagnitude, String startTime, int distance, int depth){
         this.minMagnitude = minMagnitude;
         this.startTime = startTime;
         this.distance = distance;
@@ -92,11 +92,11 @@ public class Filters {
         this.useDepth = useDepth;
     }
 
-    public Double getMinMagnitude() {
+    public int getMinMagnitude() {
         return minMagnitude;
     }
 
-    public void setMinMagnitude(Double minMagnitude) {
+    public void setMinMagnitude(int minMagnitude) {
         this.minMagnitude = minMagnitude;
         this.useMinMagnitude = true;
     }
@@ -110,20 +110,20 @@ public class Filters {
         this.useStartTime = true;
     }
 
-    public Double getDistance() {
+    public int getDistance() {
         return distance;
     }
 
-    public void setDistance(Double distance) {
+    public void setDistance(int distance) {
         this.distance = distance;
         this.useDistance = true;
     }
 
-    public Double getDepth() {
+    public int getDepth() {
         return depth;
     }
 
-    public void setDepth(Double depth) {
+    public void setDepth(int depth) {
         this.depth = depth;
         this.useDepth = true;
 
