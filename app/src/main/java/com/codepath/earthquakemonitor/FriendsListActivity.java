@@ -1,5 +1,6 @@
 package com.codepath.earthquakemonitor;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FriendsListActivity extends AppCompatActivity
@@ -54,4 +57,17 @@ public class FriendsListActivity extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void showFriendsLocation(View view)
+    {
+        TextView friendName = (TextView) findViewById(R.id.tvDummyFriend);
+        friendName.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent i = new Intent(FriendsListActivity.this, FriendsLocationActivity.class);
+                startActivity(i);
+            }
+        });
+    }
 }
