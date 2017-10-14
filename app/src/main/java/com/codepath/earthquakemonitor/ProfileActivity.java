@@ -1,5 +1,6 @@
 package com.codepath.earthquakemonitor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ public class ProfileActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Intent i = new Intent(ProfileActivity.this, MainActivity.class);
+                Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
