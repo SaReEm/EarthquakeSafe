@@ -45,7 +45,7 @@ public class EarthquakeClient {
             param.put("maxradiuskm", filter.getDistance());
         }
         if(filter.isUseDepth()){
-            param.put("maxdepth", filter.getDepth());
+            param.put("maxdepth", filter.getMaxDepth());
         }
 
         return param;
@@ -63,7 +63,7 @@ public class EarthquakeClient {
         params.put("latitude", latitude);
         //If we don't specify a radius we have to use one in a request calling with along and a lat
         // in order to create the appropriate circle of search
-        if(filter.isUseDistance() == false){
+        if(!filter.isUseDistance()){
             params.put("maxradiuskm", 200.0);
         }
         Log.d(TAG, "Send request : " + apiUrl + "?" + params.toString());
