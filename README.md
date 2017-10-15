@@ -9,7 +9,7 @@ Time spent: **X** hours spent in total
 
 The following functionality is completed:
 
-* [ ] User can **sign in using other account such as Facebook, Twitter**
+* [x] User can **sign in using other account such as Facebook, Twitter**
 * [ ] User can **view earthquakes on a map**
 * [ ] User can **filter earthquake by location, time and magnitude**
 * [ ] User can **click on an earthquake on the list and will be redirected on the USGS website**
@@ -18,9 +18,12 @@ The following functionality is completed:
   * [ ] User can set **receive notification when a friend is setting themselves safe**
   
 Optionals:
-* [ ] User can get **alert when an earthquake happen**
+* [ ] User can get **alert when an earthquake happen around a set radius of a set position**
   * [ ] User can set **time, location and magnitude of an earthquake to be alerted**
 * [ ] User can **share about an earthquake happening on social media facebook/twitter**
+
+Bonus:
+* [ ] User can get **alert when an earthquake happen around themselves**
 * [ ] User can **send SOS info**
 
 [wireframe link](https://www.fluidui.com/editor/live/)
