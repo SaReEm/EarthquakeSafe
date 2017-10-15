@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.codepath.earthquakemonitor.fragments.EarthquakeListFragment;
 import com.codepath.earthquakemonitor.fragments.FilterDialogFragment;
 import com.codepath.earthquakemonitor.fragments.HomeEarthquakeListFragment;
+import com.codepath.earthquakemonitor.models.Earthquake;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -48,6 +49,7 @@ import android.support.v7.widget.Toolbar;
 
 @RuntimePermissions
 public class MapActivity extends AppCompatActivity
+    implements EarthquakeListFragment.EarthquakeSelectedListener
 {
 
     private SupportMapFragment mapFragment;
@@ -310,4 +312,9 @@ public class MapActivity extends AppCompatActivity
         }
     }
 
+    @Override
+    public void onEarthquakeClicked(Earthquake earthquake)
+    {
+        Toast.makeText(getApplicationContext(), "Please launch webpage for details!", Toast.LENGTH_LONG).show();
+    }
 }

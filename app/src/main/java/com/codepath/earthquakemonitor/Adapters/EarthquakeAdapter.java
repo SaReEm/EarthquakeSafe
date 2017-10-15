@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.ViewHolder>
 {
-    private List<Earthquake> mEarthquakes;
+    private ArrayList<Earthquake> mEarthquakes;
     Context context;
     private EarthquakeAdapterListener mListener;
 
@@ -29,10 +30,14 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
     }
 
     // Pass in the earthquake array in the constructor
-    public EarthquakeAdapter(List<Earthquake> earthquakes, EarthquakeAdapterListener listener) {
+    public EarthquakeAdapter(ArrayList<Earthquake> earthquakes, EarthquakeAdapterListener listener) {
         mEarthquakes = earthquakes;
         mListener = listener;
     }
+
+//    public EarthquakeAdapter(ArrayList<Earthquake> earthquakes) {
+//        mEarthquakes = earthquakes;
+//    }
 
     // For each row, inflate the layout and cache references into ViewHolder
     @Override
@@ -77,25 +82,11 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
             tvMagnitude = (TextView) itemView.findViewById(R.id.tvMagnitude);
             tvTimeStamp = (TextView) itemView.findViewById(R.id.tvTimeStamp);
 
-//            // Handle row click event
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // get the position of row element
-//                    if (mListener != null) {
-//                        // Get the position of row element
-//                        int position = getAdapterPosition();
-//                        // fire the listener callback
-//                        mListener.onItemSelected(v, position);
-//                    }
-//                }
-//            });
-
-            // Handle item click event
-            tvPlace.setOnClickListener(new View.OnClickListener() {
+            // Handle row click event
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Get the position of the image element
+                    // get the position of row element
                     if (mListener != null) {
                         // Get the position of row element
                         int position = getAdapterPosition();
@@ -104,6 +95,20 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
                     }
                 }
             });
+
+//            // Handle item click event
+//            tvPlace.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // Get the position of the image element
+//                    if (mListener != null) {
+//                        // Get the position of row element
+//                        int position = getAdapterPosition();
+//                        // fire the listener callback
+//                        mListener.onItemSelected(v, position);
+//                    }
+//                }
+//            });
         }
     }
 

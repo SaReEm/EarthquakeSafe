@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -82,7 +83,7 @@ public class EarthquakeListFragment extends Fragment
             e.printStackTrace();
         }
     }
-
+//
     @Override
     public void onItemSelected(View view, int position) {
         Earthquake earthquake = earthquakes.get(position);
