@@ -18,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.codepath.earthquakemonitor.fragments.EarthquakeListFragment;
 import com.codepath.earthquakemonitor.fragments.FilterDialogFragment;
+import com.codepath.earthquakemonitor.fragments.HomeEarthquakeListFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -98,7 +100,14 @@ public class MapActivity extends AppCompatActivity
         }
 
         //TODO Create the earthquake list fragment
-
+        // Create the user fragment
+        HomeEarthquakeListFragment homeEarthquakeListFragment = new HomeEarthquakeListFragment();
+        // Display the user timeline fragment inside the container (dynamically)
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Make change
+        ft.replace(R.id.flContainer, homeEarthquakeListFragment);
+        // Commit
+        ft.commit();
 
     }
 

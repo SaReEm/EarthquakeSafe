@@ -45,22 +45,23 @@ public class LoginActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userName = etName.getText().toString();
-                String password = etPassword.getText().toString();
-                if (userName == null || password == null) {
-                    return;
-                }
-                ParseUser.logInInBackground(userName, password, new LogInCallback() {
-                    public void done(ParseUser user, ParseException e) {
-                        if (user != null) {
-                            Intent i = new Intent(LoginActivity.this, MapActivity.class);
-                            startActivity(i);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT);
-                        }
-                    }
-                });
-
+//                String userName = etName.getText().toString();
+//                String password = etPassword.getText().toString();
+//                if (userName == null || password == null) {
+//                    return;
+//                }
+//                ParseUser.logInInBackground(userName, password, new LogInCallback() {
+//                    public void done(ParseUser user, ParseException e) {
+//                        if (user != null) {
+//                            Intent i = new Intent(LoginActivity.this, MapActivity.class);
+//                            startActivity(i);
+//                        } else {
+//                            Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT);
+//                        }
+//                    }
+//                });
+                Intent i = new Intent(LoginActivity.this, MapActivity.class);
+                startActivity(i);
             }
         });
 
