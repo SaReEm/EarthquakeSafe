@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.earthquakemonitor.models.User;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.login.widget.LoginButton;
 import com.parse.LogInCallback;
@@ -114,6 +115,10 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
                 } else if (user.isNew()) {
                     Log.d("MyApp", "User signed up and logged in through Facebook!");
+                    //change the parseUser to User
+                    User toUser = new User(user);
+                    toUser.saveInBackground();
+
                     Intent i = new Intent(LoginActivity.this, MapActivity.class);
                     startActivity(i);
                 } else {
