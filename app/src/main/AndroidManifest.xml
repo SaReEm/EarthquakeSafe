@@ -76,6 +76,7 @@
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MapActivity" />
+        <activity android:name=".EarthquakeDetailActivity" />
 
         <uses-library
             android:name="com.google.android.maps"

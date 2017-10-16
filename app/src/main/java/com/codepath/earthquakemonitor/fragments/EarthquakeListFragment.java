@@ -17,11 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.Adapters.EarthquakeAdapter;
-import com.codepath.earthquakemonitor.EarthquakeClient;
-import com.codepath.earthquakemonitor.MapActivity;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
-import com.codepath.earthquakemonitor.models.Filters;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,17 +40,13 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.RuntimePermissions;
 
