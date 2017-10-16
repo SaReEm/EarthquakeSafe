@@ -10,9 +10,9 @@ Time spent: **X** hours spent in total
 The following functionality is completed:
 
 * [x] User can **sign in using other account such as Facebook, Twitter**
-* [ ] User can **view earthquakes on a map**
+* [X] User can **view earthquakes on a map**
 * [ ] User can **filter earthquake by location, time and magnitude**
-* [ ] User can **click on an earthquake on the list and will be redirected on the USGS website**
+* [X] User can **click on an earthquake on the list and will be redirected on the USGS website**
 * [ ] User can **add friends**
 * [ ] User can **make themself safe**
   * [ ] User can set **receive notification when a friend is setting themselves safe**
