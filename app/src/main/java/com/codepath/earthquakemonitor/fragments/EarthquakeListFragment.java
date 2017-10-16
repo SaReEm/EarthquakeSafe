@@ -71,6 +71,7 @@ public class EarthquakeListFragment extends Fragment
 
     private final static String KEY_LOCATION = "location";
 
+
     /*
      * Define a request code to send to Google Play services This code is
      * returned in Activity.onActivityResult
@@ -81,9 +82,10 @@ public class EarthquakeListFragment extends Fragment
         public void onEarthquakeClicked(Earthquake earthquake);
     }
 
-    RecyclerView rvEarthquakes;
-    ArrayList<Earthquake> earthquakes;
-    EarthquakeAdapter earthquakeAdapter;
+    private RecyclerView rvEarthquakes;
+    private ArrayList<Earthquake> earthquakes;
+    private EarthquakeAdapter earthquakeAdapter;
+    private ArrayList<Marker> mMarkers;
 
     @Nullable
     @Override
@@ -123,9 +125,19 @@ public class EarthquakeListFragment extends Fragment
         // Recycler view setup
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvEarthquakes.setLayoutManager(linearLayoutManager);
+
+        mMarkers = new ArrayList<>();
         return v;
 
 
+    }
+
+    public void cleanEarthquakes(){
+        if(earthquakes != null){
+            earthquakes.clear();
+            earthquakeAdapter.notifyDataSetChanged();
+            deleteAllMarkers();
+        }
     }
 
     public void addItems(JSONObject response) {
@@ -133,28 +145,46 @@ public class EarthquakeListFragment extends Fragment
         try {
             JSONArray jsonArray = null;
             jsonArray = response.getJSONArray("features");
-            Log.d(TAG, "Found " + jsonArray.length() + " earthquakes");
-            for (int i = 0; i < jsonArray.length(); i++) {
+            int nbEarthquake = jsonArray.length();
+            if(nbEarthquake == 0){
+                Toast.makeText(getContext(),"No eathquake found with this filter", Toast.LENGTH_SHORT).show();
+            }
+            Log.d(TAG, "Found " + nbEarthquake + " earthquakes");
+            for (int i = 0; i < nbEarthquake; i++) {
                 Earthquake earthquake = Earthquake.fromJson(jsonArray.getJSONObject(i));
                 earthquakes.add(earthquake);
                 earthquakeAdapter.notifyItemInserted(earthquakes.size() - 1);
-                // Set the color of the marker to green
-                BitmapDescriptor defaultMarker =
-                        BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
-                // listingPosition is a LatLng point
-                LatLng listingPosition = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
-                // Create the marker on the fragment
-                Marker mapMarker = map.addMarker(new MarkerOptions()
-                        .position(listingPosition)
-                        .title("Some title here")
-                        .snippet("Some description here")
-                        .icon(defaultMarker));
+
+                addMarkerOnEarthquake(earthquake);
             }
         }
         catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
+    private void addMarkerOnEarthquake(Earthquake earthquake){
+        // Set the color of the marker to green
+        BitmapDescriptor defaultMarker =
+                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+        // listingPosition is a LatLng point
+        LatLng listingPosition = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
+        // Create the marker on the fragment
+        Marker mapMarker = map.addMarker(new MarkerOptions()
+                .position(listingPosition)
+                .title("Some title here")
+                .snippet("Some description here")
+                .icon(defaultMarker));
+        mMarkers.add(mapMarker);
+    }
+
+    private void deleteAllMarkers(){
+        int size = mMarkers.size();
+        for (int i = 0; i < size; i++){
+            mMarkers.get(i).remove();
+        }
+    }
+
 //
     @Override
     public void onItemSelected(View view, int position) {
@@ -289,6 +319,7 @@ public class EarthquakeListFragment extends Fragment
     public void onLocationChanged(Location location) {
         // GPS may be turned off
         if (location == null) {
+            Toast.makeText(getContext(),"TurnOn your GPS to sea earthquake around you", Toast.LENGTH_SHORT).show();
             return;
         }
 
