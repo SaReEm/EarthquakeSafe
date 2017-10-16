@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 //        Double currentLatitude = -122.077655;
 //        Double currentLongitude = 37.395605;
 //        Filters filter = Filters.getInstance();
-//        client.getEarthquakeAroundPointWithFilter(currentLatitude, currentLongitude, filter, handler);
+//        client.getEarthquakeWithFilter(currentLatitude, currentLongitude, filter, handler);
 
     }
 

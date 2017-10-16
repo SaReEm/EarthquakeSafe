@@ -1,6 +1,7 @@
 package com.codepath.earthquakemonitor;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -24,7 +25,7 @@ import java.io.IOException;
 
 //@RuntimePermissions
 public class MapActivity extends AppCompatActivity
-    implements EarthquakeListFragment.EarthquakeSelectedListener
+    implements EarthquakeListFragment.EarthquakeSelectedListener,DialogInterface.OnDismissListener
 {
 
 //    private SupportMapFragment mapFragment;
@@ -42,6 +43,7 @@ public class MapActivity extends AppCompatActivity
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
+    private HomeEarthquakeListFragment homeEarthquakeListFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class MapActivity extends AppCompatActivity
 
         //TODO Create the earthquake list fragment
         // Create the user fragment
-        HomeEarthquakeListFragment homeEarthquakeListFragment = new HomeEarthquakeListFragment();
+        homeEarthquakeListFragment = new HomeEarthquakeListFragment();
         // Display the user timeline fragment inside the container (dynamically)
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Make change
@@ -106,7 +108,14 @@ public class MapActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-//    protected void loadMap(GoogleMap googleMap) {
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        //Fragment dialog had been dismissed
+        homeEarthquakeListFragment.populateEarthquakeList();
+    }
+
+
+    //    protected void loadMap(GoogleMap googleMap) {
 //        map = googleMap;
 //        if (map != null) {
 //            // Map is ready

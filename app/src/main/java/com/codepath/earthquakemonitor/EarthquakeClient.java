@@ -35,6 +35,16 @@ public class EarthquakeClient {
      */
     private RequestParams buildParamWithFilter(Filters filter){
         RequestParams param = new RequestParams();
+        if(filter.isUsePosition()){
+            param.put("longitude", filter.getLongitude());
+            param.put("latitude", filter.getLatitude());
+
+            //If we don't specify a radius we have to use one in a request calling with along and a lat
+            // in order to create the appropriate circle of search
+            if(!filter.isUseDistance()){
+                param.put("maxradiuskm", 200.0);
+            }
+        }
         if(filter.isUseMinMagnitude()){
             param.put("minmagnitude", filter.getMinMagnitude());
         }
@@ -52,20 +62,13 @@ public class EarthquakeClient {
     }
 
     /**
-     * getEarthquakeAroundPointWithFilter calls for earthquake around a specific place according to filters
+     * getEarthquakeWithFilter calls for earthquake around a specific place according to filters
      */
-    public void getEarthquakeAroundPointWithFilter(Double longitude, Double latitude,Filters filter,
+    public void getEarthquakeWithFilter(Filters filter,
                                         AsyncHttpResponseHandler handler){
         String apiUrl = BASE_URL + "query";
         RequestParams params = buildParamWithFilter(filter);
         params.put("format", "geojson");
-        params.put("longitude", longitude);
-        params.put("latitude", latitude);
-        //If we don't specify a radius we have to use one in a request calling with along and a lat
-        // in order to create the appropriate circle of search
-        if(!filter.isUseDistance()){
-            params.put("maxradiuskm", 200.0);
-        }
         Log.d(TAG, "Send request : " + apiUrl + "?" + params.toString());
         client.get(apiUrl, params, handler);
     }

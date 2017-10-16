@@ -20,11 +20,14 @@ public class Filters {
     private boolean useStartTime;
     private boolean useDistance;
     private boolean useDepth;
+    private boolean usePosition;
 
     private int minMagnitude;
     private String startTime;
     private int distance;
     private int maxDepth; //max maxDepth
+    private Double latitude;
+    private Double longitude;
 
     private Filters(){
 
@@ -32,10 +35,14 @@ public class Filters {
         distance = 60;
         //todo have a time like in the last 2 months instead of hard coded
         startTime = "2017-05-01";
+        latitude = 37.395605;
+        longitude = -122.077655;
+
 
         useMinMagnitude = true;
         useStartTime = true;
         useDistance = true;
+        usePosition = true;
         useDepth = false;
     }
 
@@ -56,25 +63,36 @@ public class Filters {
         this.maxDepth = depth;
     }
 
-    private void initFilters(){
-        minMagnitude = 2;
-        distance = 60;
-        //todo have a time like in the last 2 months instead of hard coded
-        startTime = "2017-05-01";
-
-        useMinMagnitude = true;
-        useStartTime = true;
-        useDistance = true;
-        useDepth = false;
-    }
 
     public void resetFilters(){
         useMinMagnitude = false;
         useStartTime = false;
         useDistance = false;
         useDepth = false;
+        usePosition = false;
     }
 
+
+    public boolean isUsePosition() {
+        return usePosition;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+    public void setPosition(Double latitude,Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+    public Double getLatitude(){
+        return this.latitude;
+    }
+    public Double getLongitude(){
+        return this.longitude;
+    }
 
     public boolean isUseMinMagnitude() {
         return useMinMagnitude;

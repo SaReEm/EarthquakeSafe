@@ -1,5 +1,7 @@
 package com.codepath.earthquakemonitor.fragments;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -40,7 +42,6 @@ public class FilterDialogFragment extends DialogFragment
     // constructor
     public static FilterDialogFragment newInstance() {
         FilterDialogFragment filterDialogFragment = new FilterDialogFragment();
-        //todo check if we really need bundle as the filters are a singleton we access them
         // directly via getInstance
         Bundle args = new Bundle();
 //        args.putParcelable("filters", filter);
@@ -130,7 +131,6 @@ public class FilterDialogFragment extends DialogFragment
             {
                 saveFiltersSettings();
                 Toast.makeText(getActivity(),"Save filters setting!", Toast.LENGTH_LONG ).show();
-                dismiss();
             }
         });
     }
@@ -147,6 +147,16 @@ public class FilterDialogFragment extends DialogFragment
         if(modifiedDepth){
             filter.setMaxDepth(currentDepth);
             Log.d("saveFiltersSettings", "Modify filter depth = " + currentDepth);
+        }
+        dismiss();
+    }
+
+    @Override
+    public void onDismiss(final DialogInterface dialog) {
+        super.onDismiss(dialog);
+        final Activity activity = getActivity();
+        if (activity instanceof DialogInterface.OnDismissListener) {
+            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
         }
     }
 

@@ -19,6 +19,8 @@ import cz.msebera.android.httpclient.Header;
 
 public class HomeEarthquakeListFragment extends EarthquakeListFragment
 {
+
+    final String TAG = "HomeEarthquakeListFrag";
     private EarthquakeClient client;
     Filters filter = Filters.getInstance();
 
@@ -30,8 +32,12 @@ public class HomeEarthquakeListFragment extends EarthquakeListFragment
         populateEarthquakeList();
     }
 
-    private void populateEarthquakeList() {
-        client.getEarthquakeAroundPointWithFilter(-122.077655, 37.395605, filter,
+    public void refreshEarthquakeList(){
+    }
+
+    public void populateEarthquakeList() {
+        cleanEarthquakes();
+        client.getEarthquakeWithFilter(filter,
                 new JsonHttpResponseHandler() {
 
                     @Override
@@ -41,25 +47,25 @@ public class HomeEarthquakeListFragment extends EarthquakeListFragment
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                        Log.d("TwitterClient", response.toString());
+                        Log.d(TAG, response.toString());
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        Log.d("TwitterClient", responseString);
+                        Log.d(TAG, responseString);
                         throwable.printStackTrace();
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                        Log.d("TwitterClient", errorResponse.toString());
+                        Log.d(TAG, errorResponse.toString());
                         throwable.printStackTrace();
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                         super.onFailure(statusCode, headers, throwable, errorResponse);
-                        Log.d("TwitterClient", errorResponse.toString());
+                        Log.d(TAG, "error");
                         throwable.printStackTrace();
                     }
                 });
