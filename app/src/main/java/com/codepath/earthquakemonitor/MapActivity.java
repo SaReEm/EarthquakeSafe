@@ -1,6 +1,9 @@
 package com.codepath.earthquakemonitor;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.fragments.EarthquakeListFragment;
 import com.codepath.earthquakemonitor.fragments.FilterDialogFragment;
@@ -15,6 +19,8 @@ import com.codepath.earthquakemonitor.fragments.HomeEarthquakeListFragment;
 import com.codepath.earthquakemonitor.models.Earthquake;
 
 import org.parceler.Parcels;
+
+import java.io.IOException;
 
 //@RuntimePermissions
 public class MapActivity extends AppCompatActivity
@@ -271,9 +277,15 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onEarthquakeClicked(Earthquake earthquake)
     {
-        Intent intent = new Intent(this, EarthquakeDetailActivity.class);
-        intent.putExtra("earthquake", Parcels.wrap(earthquake));
-        startActivity(intent);
+        if(isNetworkAvailable() && isOnline()) {
+
+            Intent intent = new Intent(this, EarthquakeDetailActivity.class);
+            intent.putExtra("earthquake", Parcels.wrap(earthquake));
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this,"Check you internet connection", Toast.LENGTH_SHORT).show();
+        }
 //        // Set the color of the marker to green
 //        BitmapDescriptor defaultMarker =
 //                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
@@ -286,5 +298,23 @@ public class MapActivity extends AppCompatActivity
 //                .snippet("Some description here")
 //                .icon(defaultMarker));
 //        Toast.makeText(getApplicationContext(), "Please launch webpage for details!", Toast.LENGTH_LONG).show();
+    }
+
+    private Boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+    public boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+        return false;
     }
 }

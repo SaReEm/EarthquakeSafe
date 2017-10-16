@@ -28,7 +28,7 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         earthquake = (Earthquake) Parcels.unwrap(getIntent().getParcelableExtra("earthquake"));
 
         WebView webView = (WebView) findViewById(R.id.wbEarthquake);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 view.loadUrl(earthquake.getUrl());
@@ -36,5 +36,7 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
             }
         });
         webView.loadUrl(earthquake.getUrl());
-    }
+        }
+
+
 }
