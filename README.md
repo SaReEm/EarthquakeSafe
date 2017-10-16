@@ -31,7 +31,7 @@ Bonus:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-[Link to GIF Walkthrough Write a Tweet] (https://imgur.com/a/sOdtJ)
+[Link to GIF Walkthrough Write a Tweet] (https://i.imgur.com/7dKjiIg.mp4)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
