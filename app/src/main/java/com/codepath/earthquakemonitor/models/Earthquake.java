@@ -3,21 +3,27 @@ package com.codepath.earthquakemonitor.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 /**
  * Created by emilie on 10/9/17.
  */
-public class Earthquake {
+@Parcel
+public class Earthquake{
 
     //todo clean up the unnecessary param
-    private Double mag;
-    private String place;
-    private Integer time;
+    public Double mag;
+    public String place;
+    public Integer time;
     private String url;
 
-    private Double longitude;
-    private Double latitude;
-    private Double depth;
+    public Double longitude;
+    public Double latitude;
+    public Double depth;
+
+    //For the Parcelable library
+    public Earthquake(){
+    }
 
 
 

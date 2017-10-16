@@ -1,55 +1,20 @@
 package com.codepath.earthquakemonitor;
 
-import android.Manifest;
-import android.app.Dialog;
-import android.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Looper;
-import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.fragments.EarthquakeListFragment;
 import com.codepath.earthquakemonitor.fragments.FilterDialogFragment;
 import com.codepath.earthquakemonitor.fragments.HomeEarthquakeListFragment;
 import com.codepath.earthquakemonitor.models.Earthquake;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.RuntimePermissions;
-
-import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
-
-import android.support.v7.widget.Toolbar;
+import org.parceler.Parcels;
 
 //@RuntimePermissions
 public class MapActivity extends AppCompatActivity
@@ -306,6 +271,9 @@ public class MapActivity extends AppCompatActivity
     @Override
     public void onEarthquakeClicked(Earthquake earthquake)
     {
+        Intent intent = new Intent(this, EarthquakeDetailActivity.class);
+        intent.putExtra("earthquake", Parcels.wrap(earthquake));
+        startActivity(intent);
 //        // Set the color of the marker to green
 //        BitmapDescriptor defaultMarker =
 //                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
@@ -317,6 +285,6 @@ public class MapActivity extends AppCompatActivity
 //                .title("Some title here")
 //                .snippet("Some description here")
 //                .icon(defaultMarker));
-        Toast.makeText(getApplicationContext(), "Please launch webpage for details!", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), "Please launch webpage for details!", Toast.LENGTH_LONG).show();
     }
 }

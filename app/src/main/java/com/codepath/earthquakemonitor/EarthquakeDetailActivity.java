@@ -9,6 +9,8 @@ import android.webkit.WebViewClient;
 
 import com.codepath.earthquakemonitor.models.Earthquake;
 
+import org.parceler.Parcels;
+
 /**
  * Created by emilie on 10/14/17.
  */
@@ -23,7 +25,7 @@ public class EarthquakeDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        earthquake = (Earthquake) getIntent().getSerializableExtra("earthquake");
+        earthquake = (Earthquake) Parcels.unwrap(getIntent().getParcelableExtra("earthquake"));
 
         WebView webView = (WebView) findViewById(R.id.wbEarthquake);
         webView.setWebViewClient(new WebViewClient(){
