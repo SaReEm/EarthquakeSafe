@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.codepath.earthquakemonitor.R;
+import com.codepath.earthquakemonitor.models.User;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 public class SignUpActivity extends AppCompatActivity {
     // Create the ParseUser
-    ParseUser user;
+    User user;
     EditText etEmail;
     EditText etName;
     EditText etPassword;
@@ -40,7 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if (email == null || userName == null || password == null) {
                     return;
                 }
-                user = new ParseUser();
+                user = new User();
                 // Set core properties
                 user.setUsername(userName);
                 user.setPassword(password);

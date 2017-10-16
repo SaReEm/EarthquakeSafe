@@ -2,6 +2,7 @@ package com.codepath.earthquakemonitor;
 
 import android.app.Application;
 
+import com.codepath.earthquakemonitor.models.User;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
@@ -25,6 +26,9 @@ public class ParseApplication extends Application {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         builder.networkInterceptors().add(httpLoggingInterceptor);
+
+        // Register your parse models
+        ParseObject.registerSubclass(User.class);
 
         // set applicationId, and server server based on the values in the Heroku settings.
         // clientKey is not needed unless explicitly configured
