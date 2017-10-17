@@ -20,12 +20,13 @@ import com.codepath.earthquakemonitor.models.Filters;
  * Created by hezhang on 10/12/17.
  */
 
-public class FilterDialogFragment extends DialogFragment
+public class FilterDialogFragment extends DialogFragment implements DatePickerFragment.DateDialogListener
 {
 
     private SeekBar sbMagnitude;
     private SeekBar sbDistance;
     private SeekBar sbDepth;
+    private Button btnStartTime;
 
     private int currentMagnitude;
     private int currentDistance;
@@ -53,12 +54,22 @@ public class FilterDialogFragment extends DialogFragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
     {
+        filter = Filters.getInstance();
         View view = inflater.inflate(R.layout.fragment_filters, container);
         sbMagnitude = (SeekBar) view.findViewById(R.id.seekBarMagnitude);
         sbDistance = (SeekBar) view.findViewById(R.id.seekBarDistance);
         sbDepth = (SeekBar) view.findViewById(R.id.seekBarDepth);
+        btnStartTime = (Button) view.findViewById(R.id.btnStartTimeValue);
 
-        filter = Filters.getInstance();
+        btnStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                showDatePicker();
+            }
+        });
+        btnStartTime.setText(filter.getStartTime());
+
         sbMagnitude.setProgress(filter.getMinMagnitude());
         sbMagnitude.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -159,5 +170,22 @@ public class FilterDialogFragment extends DialogFragment
             ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
         }
     }
+
+    private void showDatePicker() {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.setTargetFragment(FilterDialogFragment.this, 300);
+        newFragment.show(getFragmentManager(), "datePicker");
+    }
+
+    @Override
+    public void onDateSelected(int year, int month, int day){
+        btnStartTime.setText(year + "/" + month + "/" + day);
+        filter.setStartTime(year + "-" + month + "-" + day);
+        btnStartTime.setText(filter.getStartTime());
+
+        Toast.makeText(getContext(), year + "/" + month + "/" + day,Toast.LENGTH_SHORT).show();
+
+    }
+
 
 }
