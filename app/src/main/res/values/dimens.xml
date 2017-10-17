@@ -3,4 +3,7 @@
     <dimen name="filterSettingFontSize">24sp</dimen>
     <dimen name="filterSettingsMarginTop">20dp</dimen>
     <dimen name="filterSeekBarWidth">300dp</dimen>
+    <dimen name="defaultBtnLeftPadding">16dp</dimen>
+    <dimen name="defaultBtnRightPadding">16dp</dimen>
+    <dimen name="defaultBtnTextSize">14sp</dimen>
 </resources>
