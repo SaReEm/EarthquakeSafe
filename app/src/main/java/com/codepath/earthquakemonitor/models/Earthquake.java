@@ -14,7 +14,7 @@ public class Earthquake{
     //todo clean up the unnecessary param
     public Double mag;
     public String place;
-    public Integer time;
+    public Double time;
     private String url;
 
     public Double longitude;
@@ -47,13 +47,13 @@ public class Earthquake{
         this.place = place;
         return this;
     }
-    public Integer getTime() {
+    public Double getTime() {
         return time;
     }
-    public void setTime(Integer time) {
+    public void setTime(Double time) {
         this.time = time;
     }
-    public Earthquake withTime(Integer time) {
+    public Earthquake withTime(Double time) {
         this.time = time;
         return this;
     }
@@ -93,7 +93,9 @@ public class Earthquake{
 
         earthquake.setMag(properties.getDouble("mag"));
         earthquake.setPlace(properties.getString("place"));
-        earthquake.setTime(properties.getInt("time"));
+
+        earthquake.setTime(properties.getDouble("time"));
+
         earthquake.setUrl(properties.getString("url"));
 
         JSONArray coordinates = jsonObject.getJSONObject("geometry").getJSONArray("coordinates");
