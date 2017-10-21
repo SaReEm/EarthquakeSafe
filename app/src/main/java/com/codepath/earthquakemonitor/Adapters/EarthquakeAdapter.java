@@ -5,14 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codepath.earthquakemonitor.ConversionsUtils;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by hezhang on 10/14/17.
@@ -58,7 +57,7 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
         // Populate the views according to this data
         holder.tvPlace.setText(earthquake.getPlace());
         holder.tvMagnitude.setText(earthquake.getMag().toString());
-        holder.tvTimeStamp.setText(Integer.toString(earthquake.getTime()));
+        holder.tvTimeStamp.setText(ConversionsUtils.getRelativeTimeAgo(earthquake.getTime()));
     }
 
     @Override

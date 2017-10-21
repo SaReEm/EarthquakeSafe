@@ -1,5 +1,7 @@
 package com.codepath.earthquakemonitor.models;
 
+import java.util.Calendar;
+
 /**
  * Created by emilie on 10/9/17.
  */
@@ -25,25 +27,30 @@ public class Filters {
     private int minMagnitude;
     private String startTime;
     private int distance;
-    private int maxDepth; //max maxDepth
+    private int maxDepth;
     private Double latitude;
     private Double longitude;
 
+    public final Double DEFAULT_LATITUDE = 37.395605;
+    public final Double DEFAULT_LONGITUDE = -122.077655;
+    public final int DEFAULT_MINMAG = 3;
+    public final int DEFAULT_MINDISTANCE = 600;
+    public final int DEFAULT_MAXDEPTH = 1000;
+
     private Filters(){
-
-        minMagnitude = 2;
-        distance = 60;
-        //todo have a time like in the last 2 months instead of hard coded
-        startTime = "2017-05-01";
-        latitude = 37.395605;
-        longitude = -122.077655;
-
+        latitude = DEFAULT_LATITUDE;
+        longitude = DEFAULT_LONGITUDE;
+        minMagnitude = DEFAULT_MINMAG;
+        distance = DEFAULT_MINDISTANCE;
+        startTime = getDefaultStartTime();
+        maxDepth = DEFAULT_MAXDEPTH;
 
         useMinMagnitude = true;
         useStartTime = true;
         useDistance = true;
         usePosition = true;
         useDepth = false;
+
     }
 
     private void Filters(int minMagnitude, String startTime, int distance){
@@ -63,6 +70,30 @@ public class Filters {
         this.maxDepth = depth;
     }
 
+    //Default Start time is currently 2 months ago
+    private String getDefaultStartTime(){
+        String startTime;
+        final Calendar c = Calendar.getInstance();
+
+        c.add(Calendar.MONTH, -2);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        startTime = year + "-" + month + "-" + day;
+        return startTime;
+    }
+
+    private void initFilters(){
+        minMagnitude = DEFAULT_MINMAG;
+        distance = DEFAULT_MINDISTANCE;
+        //todo have a time like in the last 2 months instead of hard coded
+        startTime = "2017-05-01";
+
+        useMinMagnitude = true;
+        useStartTime = true;
+        useDistance = true;
+        useDepth = false;
+    }
 
     public void resetFilters(){
         useMinMagnitude = false;

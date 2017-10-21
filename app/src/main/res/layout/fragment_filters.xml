@@ -4,18 +4,39 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/tvMagnitude"
-        android:text="Magnitude"
-        android:textSize="@dimen/filterSettingFontSize"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/magnitudeLayout">
+
+        <CheckBox
+            android:id="@+id/cbUseMagnitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvMagnitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/magnitude_filter_text"
+            android:textSize="@dimen/filterSettingFontSize" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMagnitudeDisplayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3"
+        android:layout_below="@+id/magnitudeLayout"
+        android:layout_centerHorizontal="true" />
 
     <SeekBar
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:layout_below="@id/tvMagnitude"
+        android:layout_below="@id/tvMagnitudeDisplayed"
         android:id="@+id/seekBarMagnitude"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="@dimen/filterSeekBarWidth"
@@ -29,43 +50,88 @@
         android:gravity="center"
         android:layout_below="@id/seekBarMagnitude"
         android:id="@+id/tvStarttime"
-        android:text="Start Time"
+        android:text="@string/start_time_filter_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <!--TODO DatePicker and TimePicker on another fragment-->
 
+    <Button
+        android:id="@+id/btnStartTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's date"
+        android:layout_below="@+id/tvStarttime"
+        android:layout_centerHorizontal="true"
+        android:onClick="showTimePickerDialog"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/distanceLayout"
+    android:layout_below="@id/btnStartTimeValue">
+    <CheckBox
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:id="@+id/cbUseDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
     <TextView
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:textSize="@dimen/filterSettingFontSize"
         android:gravity="center"
-        android:layout_below="@id/tvStarttime"
         android:id="@+id/tvDistance"
-        android:text="Distance"
-        android:layout_width="match_parent"
+        android:text="@string/check_earthquakes_around_you"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <SeekBar
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:layout_below="@id/tvDistance"
-        android:id="@+id/seekBarDistance"
-        android:layout_width="@dimen/filterSeekBarWidth"
-        android:layout_height="wrap_content" />
+</LinearLayout>
 
     <TextView
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:textSize="@dimen/filterSettingFontSize"
-        android:gravity="center"
-        android:layout_below="@id/seekBarDistance"
-        android:id="@+id/tvDepth"
-        android:text="Depth"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/tvDistanceDisplayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 000 km"
+        android:layout_below="@+id/distanceLayout"
+        android:layout_centerHorizontal="true" />
 
+        <SeekBar
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:layout_below="@id/distanceLayout"
+            android:id="@+id/seekBarDistance"
+            android:layout_width="@dimen/filterSeekBarWidth"
+            android:layout_height="wrap_content"
+            android:max="20000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/depthLayout"
+        android:layout_below="@id/seekBarDistance">
+        <CheckBox
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:id="@+id/cbUseDepth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        <TextView
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:textSize="@dimen/filterSettingFontSize"
+            android:gravity="center"
+            android:layout_below="@id/seekBarDistance"
+            android:id="@+id/tvDepth"
+            android:text="@string/maximum_depth_filter_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvDepthDisplayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1 000 km"
+        android:layout_below="@+id/depthLayout"
+        android:layout_centerHorizontal="true" />
     <SeekBar
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:layout_below="@id/tvDepth"
+        android:layout_below="@id/tvDepthDisplayed"
         android:id="@+id/seekBarDepth"
         android:layout_width="@dimen/filterSeekBarWidth"
         android:layout_height="wrap_content" />
