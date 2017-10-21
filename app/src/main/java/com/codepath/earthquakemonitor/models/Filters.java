@@ -1,5 +1,7 @@
 package com.codepath.earthquakemonitor.models;
 
+import java.util.Calendar;
+
 /**
  * Created by emilie on 10/9/17.
  */
@@ -30,20 +32,18 @@ public class Filters {
     private Double longitude;
 
     private Filters(){
-
-        minMagnitude = 2;
-        distance = 60;
-        //todo have a time like in the last 2 months instead of hard coded
-        startTime = "2017-05-01";
         latitude = 37.395605;
         longitude = -122.077655;
-
+        minMagnitude = 3;
+        distance = 600;
+        startTime = getDefaultStartTime();
 
         useMinMagnitude = true;
         useStartTime = true;
         useDistance = true;
         usePosition = true;
         useDepth = false;
+
     }
 
     private void Filters(int minMagnitude, String startTime, int distance){
@@ -63,6 +63,30 @@ public class Filters {
         this.maxDepth = depth;
     }
 
+    //Default Start time is currently 2 months ago
+    private String getDefaultStartTime(){
+        String startTime;
+        final Calendar c = Calendar.getInstance();
+
+        c.add(Calendar.MONTH, -2);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        startTime = year + "-" + month + "-" + day;
+        return startTime;
+    }
+
+    private void initFilters(){
+        minMagnitude = 2;
+        distance = 60;
+        //todo have a time like in the last 2 months instead of hard coded
+        startTime = "2017-05-01";
+
+        useMinMagnitude = true;
+        useStartTime = true;
+        useDistance = true;
+        useDepth = false;
+    }
 
     public void resetFilters(){
         useMinMagnitude = false;

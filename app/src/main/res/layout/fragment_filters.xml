@@ -34,11 +34,20 @@
         android:layout_height="wrap_content" />
     <!--TODO DatePicker and TimePicker on another fragment-->
 
+    <Button
+        android:id="@+id/btnStartTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today's date"
+        android:layout_below="@+id/tvStarttime"
+        android:layout_centerHorizontal="true"
+        android:onClick="showTimePickerDialog"/>
+
     <TextView
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:textSize="@dimen/filterSettingFontSize"
         android:gravity="center"
-        android:layout_below="@id/tvStarttime"
+        android:layout_below="@id/btnStartTimeValue"
         android:id="@+id/tvDistance"
         android:text="Distance"
         android:layout_width="match_parent"
@@ -50,7 +59,9 @@
         android:layout_below="@id/tvDistance"
         android:id="@+id/seekBarDistance"
         android:layout_width="@dimen/filterSeekBarWidth"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:max="20000"/>
+
 
     <TextView
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
