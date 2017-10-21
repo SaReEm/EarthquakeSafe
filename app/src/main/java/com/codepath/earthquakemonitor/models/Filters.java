@@ -37,6 +37,7 @@ public class Filters {
         minMagnitude = 3;
         distance = 600;
         startTime = getDefaultStartTime();
+        maxDepth = 1000;
 
         useMinMagnitude = true;
         useStartTime = true;

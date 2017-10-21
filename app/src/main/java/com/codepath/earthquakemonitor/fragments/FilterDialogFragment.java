@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
@@ -22,11 +24,20 @@ import com.codepath.earthquakemonitor.models.Filters;
 
 public class FilterDialogFragment extends DialogFragment implements DatePickerFragment.DateDialogListener
 {
-
+    private CheckBox cbUseMagnitude;
+    private TextView tvMagnitudeDisplay;
     private SeekBar sbMagnitude;
+
+    private CheckBox cbUseDistance;
+    private TextView tvDistanceDisplay;
     private SeekBar sbDistance;
+
+    private CheckBox cbUseDepth;
+    private TextView tvDepthDisplay;
     private SeekBar sbDepth;
+
     private Button btnStartTime;
+
 
     private int currentMagnitude;
     private int currentDistance;
@@ -60,6 +71,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         sbDistance = (SeekBar) view.findViewById(R.id.seekBarDistance);
         sbDepth = (SeekBar) view.findViewById(R.id.seekBarDepth);
         btnStartTime = (Button) view.findViewById(R.id.btnStartTimeValue);
+        tvDistanceDisplay = view.findViewById(R.id.tvDistanceDisplayed);
 
         btnStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,12 +82,24 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         });
         btnStartTime.setText(filter.getStartTime());
 
+        cbUseMagnitude = view.findViewById(R.id.cbUseMagnitude);
+        cbUseMagnitude.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isChecked = cbUseMagnitude.isChecked();
+                onClickUseMagnitude(isChecked);
+            }
+        });
+        tvMagnitudeDisplay = view.findViewById(R.id.tvMagnitudeDisplayed);
+
         sbMagnitude.setProgress(filter.getMinMagnitude());
         sbMagnitude.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     currentMagnitude = progress;
                     modifiedMagnitude = true;
+
+                    tvMagnitudeDisplay.setText(Integer.toString(progress));
             }
 
             @Override
@@ -95,6 +119,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentDistance = progress;
                 modifiedDistance = true;
+                tvDistanceDisplay.setText(progress + " km");
             }
 
             @Override
@@ -113,6 +138,8 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentDepth = progress;
                 modifiedDepth = true;
+                tvDepthDisplay.setText(progress + " km");
+
             }
 
             @Override
@@ -126,7 +153,51 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             }
         });
 
+        cbUseDistance = view.findViewById(R.id.cbUseDistance);
+        cbUseDistance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isChecked = cbUseDistance.isChecked();
+                onClickUseDistance(isChecked);
+            }
+        });
+
+        tvDepthDisplay = view.findViewById(R.id.tvDepthDisplayed);
+        cbUseDepth = view.findViewById(R.id.cbUseDepth);
+        cbUseDepth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean isChecked = cbUseDepth.isChecked();
+                onClickUseDepth(isChecked);
+            }
+        });
+
+        initValues();
         return view;
+    }
+
+    private void initValues(){
+        int minMagnitude = filter.getMinMagnitude();
+        boolean useMagnitude = filter.isUseMinMagnitude();
+        sbMagnitude.setProgress(minMagnitude);
+        tvMagnitudeDisplay.setText(Integer.toString(minMagnitude));
+        sbMagnitude.setActivated(useMagnitude);
+        cbUseMagnitude.setChecked(useMagnitude);
+
+        int dist = filter.getDistance();
+        boolean useDistance = filter.isUseDistance();
+        sbDistance.setProgress(dist);
+        tvDistanceDisplay.setText(Integer.toString(dist) + " km");
+        sbDistance.setActivated(useDistance);
+        cbUseDistance.setChecked(useDistance);
+
+        int depth = filter.getMaxDepth();
+        boolean useDepth = filter.isUseDepth();
+        sbDepth.setProgress(depth);
+        tvDepthDisplay.setText(Integer.toString(depth) + " km");
+        sbDepth.setActivated(useDepth);
+        cbUseDepth.setChecked(useDepth);
+
     }
 
     @Override
@@ -186,6 +257,22 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         Toast.makeText(getContext(), year + "/" + month + "/" + day,Toast.LENGTH_SHORT).show();
 
     }
+
+    public void onClickUseMagnitude(boolean useMagnitude){
+        filter.setUseMinMagnitude(useMagnitude);
+        sbMagnitude.setEnabled(useMagnitude);
+    }
+
+    public void onClickUseDistance(boolean useDistance){
+        filter.setUseDistance(useDistance);
+        sbDistance.setEnabled(useDistance);
+    }
+
+    public void onClickUseDepth(boolean useDepth){
+        filter.setUseDepth(useDepth);
+        sbDepth.setEnabled(useDepth);
+    }
+
 
 
 }
