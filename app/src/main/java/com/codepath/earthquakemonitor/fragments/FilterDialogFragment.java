@@ -1,7 +1,9 @@
 package com.codepath.earthquakemonitor.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -24,6 +26,8 @@ import com.codepath.earthquakemonitor.models.Filters;
 
 public class FilterDialogFragment extends DialogFragment implements DatePickerFragment.DateDialogListener
 {
+    private final String TAG = "FilterDialogFragTAG";
+
     private CheckBox cbUseMagnitude;
     private TextView tvMagnitudeDisplay;
     private SeekBar sbMagnitude;
@@ -47,6 +51,13 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
     private boolean modifiedDistance = false;
     private boolean modifiedDepth = false;
 
+    private SharedPreferences mSettings;
+    private SharedPreferences.Editor mEditor;
+
+    private final String sharedPrefMinMag = "min_magnitude";
+    private final String sharedPrefMinDist = "min_distance";
+    private final String sharedPrefMaxDepth = "max_depth";
+
     Filters filter;
     public FilterDialogFragment() {
     }
@@ -65,18 +76,18 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState)
     {
+        mSettings = getActivity().getSharedPreferences("Filters", Context.MODE_PRIVATE);
         filter = Filters.getInstance();
         View view = inflater.inflate(R.layout.fragment_filters, container);
-        sbMagnitude = (SeekBar) view.findViewById(R.id.seekBarMagnitude);
-        sbDistance = (SeekBar) view.findViewById(R.id.seekBarDistance);
-        sbDepth = (SeekBar) view.findViewById(R.id.seekBarDepth);
-        btnStartTime = (Button) view.findViewById(R.id.btnStartTimeValue);
+        sbMagnitude = view.findViewById(R.id.seekBarMagnitude);
+        sbDistance = view.findViewById(R.id.seekBarDistance);
+        sbDepth = view.findViewById(R.id.seekBarDepth);
+        btnStartTime = view.findViewById(R.id.btnStartTimeValue);
         tvDistanceDisplay = view.findViewById(R.id.tvDistanceDisplayed);
 
         btnStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 showDatePicker();
             }
         });
@@ -177,21 +188,54 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
     }
 
     private void initValues(){
-        int minMagnitude = filter.getMinMagnitude();
+        //****MAGNITUDE
+        int setting = mSettings.getInt(sharedPrefMinMag, -1);
+        int minMagnitude;
+        if(setting == -1){
+            minMagnitude = filter.getMinMagnitude();
+            Log.d(TAG, "No value in sharedPreference for min_magnitude");
+
+        }
+        else{
+            minMagnitude = setting;
+            Log.d(TAG, "Found value in sharedPreference for min_magnitude = " + setting);
+        }
         boolean useMagnitude = filter.isUseMinMagnitude();
         sbMagnitude.setProgress(minMagnitude);
         tvMagnitudeDisplay.setText(Integer.toString(minMagnitude));
         sbMagnitude.setActivated(useMagnitude);
         cbUseMagnitude.setChecked(useMagnitude);
 
-        int dist = filter.getDistance();
+        //****DISTANCE
+        setting = mSettings.getInt(sharedPrefMinDist, -1);
+        int dist;
+        if(setting == -1){
+            dist = filter.getDistance();
+            Log.d(TAG, "No value in sharedPreference for min_distance");
+        }
+        else{
+            dist = setting;
+            Log.d(TAG, "Found value in sharedPreference for min_distance = " + setting);
+
+        }
         boolean useDistance = filter.isUseDistance();
         sbDistance.setProgress(dist);
         tvDistanceDisplay.setText(Integer.toString(dist) + " km");
         sbDistance.setActivated(useDistance);
         cbUseDistance.setChecked(useDistance);
 
-        int depth = filter.getMaxDepth();
+        //****DEPTH
+        setting = mSettings.getInt(sharedPrefMaxDepth, -1);
+        int depth;
+        if(setting == -1){
+            depth = filter.getMaxDepth();
+            Log.d(TAG, "No value in sharedPreference for max_depth");
+        }
+        else{
+            depth = setting;
+            Log.d(TAG, "Found value in sharedPreference for max_depth = " + setting);
+        }
+
         boolean useDepth = filter.isUseDepth();
         sbDepth.setProgress(depth);
         tvDepthDisplay.setText(Integer.toString(depth) + " km");
@@ -220,16 +264,25 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
     void saveFiltersSettings(){
         if(modifiedMagnitude){
             filter.setMinMagnitude(currentMagnitude);
-            Log.d("saveFiltersSettings", "Modify filter minMagnitude = " + currentMagnitude);
+            Log.d(TAG, "Modify filter minMagnitude = " + currentMagnitude);
         }
+
         if(modifiedDistance){
             filter.setDistance(currentDistance);
-            Log.d("saveFiltersSettings", "Modify filter distance = " + currentDistance);
+            Log.d(TAG, "Modify filter distance = " + currentDistance);
         }
         if(modifiedDepth){
             filter.setMaxDepth(currentDepth);
-            Log.d("saveFiltersSettings", "Modify filter depth = " + currentDepth);
+            Log.d(TAG, "Modify filter depth = " + currentDepth);
         }
+
+        //save in sharedPref
+        mEditor = mSettings.edit();
+        mEditor.putInt(sharedPrefMinMag, currentMagnitude);
+        mEditor.putInt(sharedPrefMinDist, currentDistance);
+        mEditor.putInt(sharedPrefMaxDepth, currentDepth);
+        mEditor.apply();
+
         dismiss();
     }
 

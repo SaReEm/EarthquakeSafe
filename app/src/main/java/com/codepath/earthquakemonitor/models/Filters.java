@@ -27,17 +27,23 @@ public class Filters {
     private int minMagnitude;
     private String startTime;
     private int distance;
-    private int maxDepth; //max maxDepth
+    private int maxDepth;
     private Double latitude;
     private Double longitude;
 
+    public final Double DEFAULT_LATITUDE = 37.395605;
+    public final Double DEFAULT_LONGITUDE = -122.077655;
+    public final int DEFAULT_MINMAG = 3;
+    public final int DEFAULT_MINDISTANCE = 600;
+    public final int DEFAULT_MAXDEPTH = 1000;
+
     private Filters(){
-        latitude = 37.395605;
-        longitude = -122.077655;
-        minMagnitude = 3;
-        distance = 600;
+        latitude = DEFAULT_LATITUDE;
+        longitude = DEFAULT_LONGITUDE;
+        minMagnitude = DEFAULT_MINMAG;
+        distance = DEFAULT_MINDISTANCE;
         startTime = getDefaultStartTime();
-        maxDepth = 1000;
+        maxDepth = DEFAULT_MAXDEPTH;
 
         useMinMagnitude = true;
         useStartTime = true;
@@ -78,8 +84,8 @@ public class Filters {
     }
 
     private void initFilters(){
-        minMagnitude = 2;
-        distance = 60;
+        minMagnitude = DEFAULT_MINMAG;
+        distance = DEFAULT_MINDISTANCE;
         //todo have a time like in the last 2 months instead of hard coded
         startTime = "2017-05-01";
 
