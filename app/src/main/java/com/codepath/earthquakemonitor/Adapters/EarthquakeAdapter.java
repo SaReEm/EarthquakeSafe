@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.codepath.earthquakemonitor.ConversionsUtils;
+import com.codepath.earthquakemonitor.utils.ConversionsUtils;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
 
