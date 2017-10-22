@@ -20,14 +20,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private List<ParseUser> mUsers;
     private Context context;
     private UserAdapterListener mListener;
+    private BtnListener mBtnListener;
 
     public interface  UserAdapterListener {
         public void onItemSelected(View view, int position);
     }
 
-    public UserAdapter(List<ParseUser> users, UserAdapterListener listener) {
+    public UserAdapter(List<ParseUser> users, UserAdapterListener listener, BtnListener btnListener) {
         mUsers = users;
         mListener = listener;
+        mBtnListener = btnListener;
     }
 
     @Override
@@ -39,16 +41,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         return viewHolder;
     }
 
+    public interface BtnListener {
+        public void onClick(View view, int position);
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ParseUser user = mUsers.get(position);
         holder.tvName.setText(user.getUsername());
-        holder.btnAddFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseQueryClient.follow(user);
-            }
-        });
     }
 
     @Override
@@ -62,8 +62,26 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        mListener.onItemSelected(view, position);
+                    }
+                }
+            });
             tvName = itemView.findViewById(R.id.tvUserName);
             btnAddFriend = itemView.findViewById(R.id.btn_AddFriend);
+            btnAddFriend.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mBtnListener != null) {
+                        int position = getAdapterPosition();
+                        mBtnListener.onClick(view, position);
+                    }
+                }
+            });
 
         }
     }
