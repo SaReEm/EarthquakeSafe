@@ -160,7 +160,6 @@ public class EarthquakeListFragment extends Fragment
                 Earthquake earthquake = Earthquake.fromJson(jsonArray.getJSONObject(i));
                 earthquakes.add(earthquake);
                 earthquakeAdapter.notifyItemInserted(earthquakes.size() - 1);
-
                 addMarkerOnEarthquake(earthquake);
             }
         }
