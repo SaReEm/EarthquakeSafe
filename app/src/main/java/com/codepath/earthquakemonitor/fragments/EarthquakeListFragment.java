@@ -330,6 +330,11 @@ public class EarthquakeListFragment extends Fragment
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+
+        // Center the camera to the current location and zoom in
+        LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng,10);
+        map.animateCamera(cameraUpdate);
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
