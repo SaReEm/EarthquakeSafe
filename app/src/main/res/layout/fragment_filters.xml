@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/magnitudeLayout">
+        android:id="@+id/magnitudeLayout"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/cbUseMagnitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
             android:gravity="center" />
 
         <TextView
@@ -34,40 +35,45 @@
         android:layout_centerHorizontal="true" />
 
     <SeekBar
+        android:id="@+id/seekBarMagnitude"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:layout_below="@id/tvMagnitudeDisplayed"
-        android:id="@+id/seekBarMagnitude"
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="@dimen/filterSeekBarWidth"
         android:layout_height="wrap_content"
         android:max="10"
         android:progress="3" />
 
-    <TextView
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:textSize="@dimen/filterSettingFontSize"
-        android:gravity="center"
-        android:layout_below="@id/seekBarMagnitude"
-        android:id="@+id/tvStarttime"
-        android:text="@string/start_time_filter_text"
+    <LinearLayout
+        android:id="@+id/llStartTime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <!--TODO DatePicker and TimePicker on another fragment-->
-
-    <Button
-        android:id="@+id/btnStartTimeValue"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today's date"
-        android:layout_below="@+id/tvStarttime"
-        android:layout_centerHorizontal="true"
-        android:onClick="showTimePickerDialog"/>
-<LinearLayout
+        android:orientation="horizontal"
+        android:layout_below="@id/seekBarMagnitude"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvStarttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_time_filter_text"
+            android:textSize="@dimen/filterSettingFontSize" />
+
+        <Button
+            android:id="@+id/btnStartTimeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's date"
+            android:layout_centerHorizontal="true"
+            android:onClick="showTimePickerDialog"/>
+    </LinearLayout>
+
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/distanceLayout"
-    android:layout_below="@id/btnStartTimeValue">
+    android:layout_below="@id/llStartTime">
     <CheckBox
         android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:id="@+id/cbUseDistance"
