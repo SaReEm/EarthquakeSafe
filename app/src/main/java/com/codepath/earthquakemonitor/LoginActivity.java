@@ -46,21 +46,21 @@ public class LoginActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String userName = etName.getText().toString();
-//                String password = etPassword.getText().toString();
-//                if (userName == null || password == null) {
-//                    return;
-//                }
-//                ParseUser.logInInBackground(userName, password, new LogInCallback() {
-//                    public void done(ParseUser user, ParseException e) {
-//                        if (user != null) {
-//                            Intent i = new Intent(LoginActivity.this, MapActivity.class);
-//                            startActivity(i);
-//                        } else {
-//                            Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT);
-//                        }
-//                    }
-//                });
+                String userName = etName.getText().toString();
+                String password = etPassword.getText().toString();
+                if (userName == null || password == null) {
+                    return;
+                }
+                ParseUser.logInInBackground(userName, password, new LogInCallback() {
+                    public void done(ParseUser user, ParseException e) {
+                        if (user != null) {
+                            Intent i = new Intent(LoginActivity.this, MapActivity.class);
+                            startActivity(i);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
                 Intent i = new Intent(LoginActivity.this, MapActivity.class);
                 startActivity(i);
             }
@@ -97,7 +97,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void parseFBLogin() {
         ArrayList<String> permissions = new ArrayList();
-        permissions.add("email");
+        permissions.add("public_profile");
+        permissions.add("user_friends");
         ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions,
                 new LogInCallback() {
             @Override
@@ -109,8 +110,8 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (user.isNew()) {
                     Log.d("MyApp", "User signed up and logged in through Facebook!");
                     //change the parseUser to User
-                    User toUser = new User(user);
-                    toUser.saveInBackground();
+                    /*User toUser = new User(user);
+                    toUser.saveInBackground();*/
 
                     Intent i = new Intent(LoginActivity.this, MapActivity.class);
                     startActivity(i);

@@ -1,20 +1,26 @@
 package com.codepath.earthquakemonitor;
 
-import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.codepath.earthquakemonitor.Adapters.UserAdapter;
+import com.codepath.earthquakemonitor.Adapters.UserPagerAdapter;
+import com.codepath.earthquakemonitor.utils.ParseQueryClient;
+
+import java.util.ArrayList;
 
 public class FriendsListActivity extends AppCompatActivity
 {
+    private UserPagerAdapter userPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,11 +28,18 @@ public class FriendsListActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends_list);
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        userPagerAdapter = new UserPagerAdapter(getSupportFragmentManager(), this);
+        viewPager.setAdapter(userPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -57,7 +70,7 @@ public class FriendsListActivity extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void showFriendsLocation(View view)
+    /*public void showFriendsLocation(View view)
     {
         TextView friendName = (TextView) findViewById(R.id.tvDummyFriend);
         friendName.setOnClickListener(new View.OnClickListener()
@@ -69,5 +82,6 @@ public class FriendsListActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
-    }
+    }*/
+
 }

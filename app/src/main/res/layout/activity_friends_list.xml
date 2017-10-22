@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimaryDark"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.codepath.earthquakemonitor.FriendsListActivity">
@@ -21,28 +21,19 @@
             android:background="?attr/colorPrimary">
         </android.support.v7.widget.Toolbar>
 
+        <android.support.design.widget.TabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0px"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
+
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_below="@id/appBar"
-        android:id="@+id/tvFriendsListTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Friends"/>
-
-    <TextView
-        android:layout_below="@id/tvFriendsListTitle"
-        android:text="Dummy Friend"
-        android:onClick="showFriendsLocation"
-        android:id="@+id/tvDummyFriend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/tvFriendsListTitle"
-        android:id="@+id/rvFriendsList"
-        android:layout_width="match_parent"
-        android:layout_height="400dp">
-    </android.support.v7.widget.RecyclerView>
-
-</RelativeLayout>
+</LinearLayout>
