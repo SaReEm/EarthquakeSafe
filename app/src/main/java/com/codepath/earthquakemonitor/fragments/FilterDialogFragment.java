@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Filters;
@@ -42,7 +41,6 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
 
     private Button btnStartTime;
 
-
     private int currentMagnitude;
     private int currentDistance;
     private int currentDepth;
@@ -59,6 +57,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
     private final String sharedPrefMaxDepth = "max_depth";
 
     Filters filter;
+
     public FilterDialogFragment() {
     }
 
@@ -184,6 +183,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         });
 
         initValues();
+
         return view;
     }
 
@@ -256,31 +256,31 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             public void onClick(View view)
             {
                 saveFiltersSettings();
-                Toast.makeText(getActivity(),"Save filters setting!", Toast.LENGTH_LONG ).show();
+                Log.d(TAG,"Save filters setting!");
             }
         });
     }
 
     void saveFiltersSettings(){
+        mEditor = mSettings.edit();
         if(modifiedMagnitude){
             filter.setMinMagnitude(currentMagnitude);
-            Log.d(TAG, "Modify filter minMagnitude = " + currentMagnitude);
+            Log.d(TAG, "Modify filter minMagnitude and shared preferences = " + currentMagnitude);
+            mEditor.putInt(sharedPrefMinMag, currentMagnitude);
         }
 
         if(modifiedDistance){
             filter.setDistance(currentDistance);
-            Log.d(TAG, "Modify filter distance = " + currentDistance);
+            Log.d(TAG, "Modify filter distance and shared preferences = " + currentDistance);
+            mEditor.putInt(sharedPrefMinDist, currentDistance);
         }
         if(modifiedDepth){
             filter.setMaxDepth(currentDepth);
-            Log.d(TAG, "Modify filter depth = " + currentDepth);
+            Log.d(TAG, "Modify filter depth and shared preferences = " + currentDepth);
+            mEditor.putInt(sharedPrefMaxDepth, currentDepth);
         }
 
         //save in sharedPref
-        mEditor = mSettings.edit();
-        mEditor.putInt(sharedPrefMinMag, currentMagnitude);
-        mEditor.putInt(sharedPrefMinDist, currentDistance);
-        mEditor.putInt(sharedPrefMaxDepth, currentDepth);
         mEditor.apply();
 
         dismiss();
@@ -307,7 +307,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         filter.setStartTime(year + "-" + month + "-" + day);
         btnStartTime.setText(filter.getStartTime());
 
-        Toast.makeText(getContext(), year + "/" + month + "/" + day,Toast.LENGTH_SHORT).show();
+        Log.d(TAG, year + "/" + month + "/" + day);
 
     }
 
@@ -325,7 +325,6 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         filter.setUseDepth(useDepth);
         sbDepth.setEnabled(useDepth);
     }
-
 
 
 }
