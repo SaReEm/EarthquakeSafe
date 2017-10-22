@@ -7,18 +7,18 @@
     tools:context="com.codepath.earthquakemonitor.LoginActivity">
 
     <LinearLayout
-        android:layout_margin="20dp"
+        android:layout_margin="10dp"
         android:id="@+id/loginCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/round_corner_card"
         android:orientation="vertical">
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="40dp"
             android:gravity="center"
             android:text="EarthquakeSafe"
             android:textColor="@android:color/white"
@@ -26,7 +26,9 @@
 
         <EditText
             android:textColor="@android:color/white"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="80dp"
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,34 +46,35 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/btnSigninWidth"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
+            android:layout_marginTop="50dp"
+            android:paddingLeft="@dimen/defaultBtnLeftPadding"
+            android:paddingRight="@dimen/defaultBtnRightPadding"
             android:text="Login"
-            android:background="#be72bfe4"
+            android:background="@drawable/rounded_shape"
             android:textColor="@android:color/white"
-            android:textSize="24dp" />
+            android:textSize="@dimen/defaultBtnTextSize" />
 
         <Button
-            android:background="@color/com_facebook_blue"
+            android:paddingRight="@dimen/defaultBtnRightPadding"
+            android:paddingLeft="@dimen/defaultBtnLeftPadding"
+            android:background="@drawable/rounded_shape_fb"
             android:text="Log in with Facebook"
             android:id="@+id/btn_fblogin"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="48dp"/>
 
         <TextView
+            android:layout_marginTop="50dp"
+            android:background="?attr/selectableItemBackground"
             android:onClick="signUp"
             android:id="@+id/tvSignup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:gravity="center"
             android:text="No account yet? Create one"
             android:textSize="16dip" />
