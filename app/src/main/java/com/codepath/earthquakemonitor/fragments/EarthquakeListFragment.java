@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.codepath.earthquakemonitor.Adapters.EarthquakeAdapter;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
+import com.codepath.earthquakemonitor.models.Filters;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -69,7 +70,9 @@ public class EarthquakeListFragment extends Fragment
     private LocationRequest mLocationRequest;
     Location mCurrentLocation;
     private long UPDATE_INTERVAL = 60000;  /* 60 secs */
-    private long FASTEST_INTERVAL = 5000; /* 5 secs */
+    private long FASTEST_INTERVAL = 50000; /* 5 secs */
+
+    private Filters filter = Filters.getInstance();
 
     private final static String KEY_LOCATION = "location";
 
@@ -152,6 +155,7 @@ public class EarthquakeListFragment extends Fragment
                 Toast.makeText(getContext(),"No eathquake found with this filter", Toast.LENGTH_SHORT).show();
             }
             Log.d(TAG, "Found " + nbEarthquake + " earthquakes");
+            Toast.makeText(getActivity(), "Found " + nbEarthquake + " earthquakes",Toast.LENGTH_SHORT).show();
             for (int i = 0; i < nbEarthquake; i++) {
                 Earthquake earthquake = Earthquake.fromJson(jsonArray.getJSONObject(i));
                 earthquakes.add(earthquake);
@@ -335,10 +339,11 @@ public class EarthquakeListFragment extends Fragment
         // Report to the UI that the location was updated
 
         mCurrentLocation = location;
+        filter.setPosition(location.getLatitude(),location.getLongitude());
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
 
         // Center the camera to the current location and zoom in
         LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());

@@ -7,53 +7,51 @@
     android:layout_height="match_parent"
     tools:context="com.codepath.earthquakemonitor.FriendsListActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
+    <LinearLayout
+        android:id="@+id/llVertical"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:minHeight="?attr/actionBarSize"
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:titleTextColor="@android:color/white"
-            android:background="?attr/colorPrimary">
-        </android.support.v7.widget.Toolbar>
+            android:layout_height="wrap_content">
 
-    </android.support.design.widget.AppBarLayout>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:minHeight="?attr/actionBarSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@android:color/white"
+                android:background="?attr/colorPrimary">
+            </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/tvFriendsListTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appBar"
-        android:text="Friends"
-        android:textSize="18sp" />
+            <android.support.design.widget.TabLayout
+                android:id="@+id/sliding_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabMode="fixed" />
 
-    <TextView
-        android:layout_below="@id/tvFriendsListTitle"
-        android:text="Dummy Friend"
-        android:onClick="showFriendsLocation"
-        android:id="@+id/tvDummyFriend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:background="@android:color/white" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_below="@id/tvFriendsListTitle"
-        android:id="@+id/rvFriendsList"
-        android:layout_width="match_parent"
-        android:layout_height="400dp">
-    </android.support.v7.widget.RecyclerView>
-
-    <Button
-        android:background="@drawable/rounded_shape"
-        android:id="@+id/btnAddFriend"
-        android:layout_width="@dimen/btnSigninWidth"
-        android:layout_height="wrap_content"
-        android:text="Invite Friend"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="18dp" />
-
+        </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
+    <!--<Button-->
+    <!--android:background="@drawable/rounded_shape"-->
+    <!--android:id="@+id/btnAddFriend"-->
+    <!--android:layout_width="@dimen/btnSigninWidth"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Invite Friend"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:layout_below="@id/llVertical"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="18dp" />-->
 </RelativeLayout>
+

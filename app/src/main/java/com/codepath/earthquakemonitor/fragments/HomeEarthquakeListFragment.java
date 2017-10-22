@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.codepath.earthquakemonitor.EarthquakeClient;
+import com.codepath.earthquakemonitor.utils.EarthquakeClient;
 import com.codepath.earthquakemonitor.models.Filters;
 import com.loopj.android.http.JsonHttpResponseHandler;
 

@@ -1,6 +1,6 @@
 # Final Project - *Earthquake App*
 
-**Earthquake App** is an android app that allows a user to view real time earthquake information. The user could request info by location, time, magnitude. It will alert user when a earthquake happens nearby.
+**Earthquake App** is an android app that allows a user to view real time earthquake information. The user can request info by location, time, magnitude on previous earthquakes and get their detailed information. 
 Users can notify their friend also they can mark themselves safe after an earthquake happens.
 
 Time spent: **X** hours spent in total
@@ -9,20 +9,23 @@ Time spent: **X** hours spent in total
 
 The following functionality is completed:
 
+* [x] User can **create an account**
 * [x] User can **sign in using other account such as Facebook, Twitter**
 * [X] User can **view earthquakes on a map**
-* [ ] User can **filter earthquake by location, time and magnitude**
+* [X] User can **filter earthquake by location, time and magnitude**
+ * [X] User can **find the same filters saved even after closing the app**
 * [X] User can **click on an earthquake on the list and will be redirected on the USGS website**
 * [ ] User can **add friends**
-* [ ] User can **make themself safe**
-  * [ ] User can set **receive notification when a friend is setting themselves safe**
+* [ ] User can **set him/herself safe**
+  
   
 Optionals:
-* [ ] User can get **alert when an earthquake happen around a set radius of a set position**
-  * [ ] User can set **time, location and magnitude of an earthquake to be alerted**
+* [ ] User can set **time, location and magnitude of an earthquake to be alerted**
 * [ ] User can **share about an earthquake happening on social media facebook/twitter**
+* [ ] User can set **receive notification when a friend is setting themselves safe**
 
 Bonus:
+* [ ] User can get **alert when an earthquake happen around a set radius of a set position**
 * [ ] User can get **alert when an earthquake happen around themselves**
 * [ ] User can **send SOS info**
 
@@ -42,7 +45,6 @@ Describe any challenges encountered while building the app.
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
-- [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
 
 ## License
 

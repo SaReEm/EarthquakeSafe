@@ -30,10 +30,6 @@ public class MapActivity extends AppCompatActivity
 
 //    private SupportMapFragment mapFragment;
 //    private GoogleMap map;
-//    private LocationRequest mLocationRequest;
-//    Location mCurrentLocation;
-//    private long UPDATE_INTERVAL = 60000;  /* 60 secs */
-//    private long FASTEST_INTERVAL = 5000; /* 5 secs */
 //
 //    private final static String KEY_LOCATION = "location";
 
@@ -114,6 +110,137 @@ public class MapActivity extends AppCompatActivity
         homeEarthquakeListFragment.populateEarthquakeList();
     }
 
+
+//
+//    public void onLocationChanged(Location location) {
+//        // New location has now been determined
+//        String msg = "Updated Location: " +
+//                Double.toString(location.getLatitude()) + "," +
+//                Double.toString(location.getLongitude());
+//        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+//        // You can now create a LatLng Object for use with maps
+//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//        mCurrentLocation = location;
+//        mCurrentLatLng = latLng;
+//    }
+//
+//    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+//    private FusedLocationProviderClient locationClient;
+//
+//    public boolean checkLocationPermission() {
+//        if (ContextCompat.checkSelfPermission(this,
+//                Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            // Should we show an explanation?
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+//                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+//
+//                // Show an explanation to the user *asynchronously* -- don't block
+//                // this thread waiting for the user's response! After the user
+//                // sees the explanation, try again to request the permission.
+//                new AlertDialog.Builder(this)
+//                        .setTitle("get permission")
+//                        .setMessage("message permission")
+//                        .setPositiveButton("string ok", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                //Prompt the user once explanation has been shown
+//                                ActivityCompat.requestPermissions(MapActivity.this,
+//                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                                        MY_PERMISSIONS_REQUEST_LOCATION);
+//                            }
+//                        })
+//                        .create()
+//                        .show();
+//
+//
+//            } else {
+//                // No explanation needed, we can request the permission.
+//                ActivityCompat.requestPermissions(this,
+//                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                        MY_PERMISSIONS_REQUEST_LOCATION);
+//            }
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode,
+//                                           String permissions[], int[] grantResults) {
+//        switch (requestCode) {
+//            case MY_PERMISSIONS_REQUEST_LOCATION: {
+//                // If request is cancelled, the result arrays are empty.
+//                if (grantResults.length > 0
+//                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//
+//                    // permission was granted, yay! Do the
+//                    // location-related task you need to do.
+//                    if (ContextCompat.checkSelfPermission(this,
+//                            Manifest.permission.ACCESS_FINE_LOCATION)
+//                            == PackageManager.PERMISSION_GRANTED) {
+//
+//                        //Request location updates:
+//                        locationClient.getLastLocation()
+//                                .addOnSuccessListener(new OnSuccessListener<Location>() {
+//                                    @Override
+//                                    public void onSuccess(Location location) {
+//                                        // GPS location can be null if GPS is switched off
+//                                        if (location != null) {
+//                                            onLocationChanged(location);
+//                                        }
+//                                    }
+//                                })
+//                                .addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Log.d("MapDemoActivity", "Error trying to get last GPS location");
+//                                        e.printStackTrace();
+//                                    }
+//                                });
+//                    }
+//
+//                } else {
+//
+//                    // permission denied, boo! Disable the
+//                    // functionality that depends on this permission.
+//
+//                }
+//                return;
+//            }
+//
+//        }
+//    }
+//
+//    public void getLastLocation() {
+//        // Get last known recent location using new Google Play Services SDK (v11+)
+//        locationClient = getFusedLocationProviderClient(this);
+//        if (checkLocationPermission()) {
+//            if (ContextCompat.checkSelfPermission(this,
+//                    Manifest.permission.ACCESS_FINE_LOCATION)
+//                    == PackageManager.PERMISSION_GRANTED) {
+//                locationClient.getLastLocation()
+//                        .addOnSuccessListener(new OnSuccessListener<Location>() {
+//                            @Override
+//                            public void onSuccess(Location location) {
+//                                // GPS location can be null if GPS is switched off
+//                                if (location != null) {
+//                                    onLocationChanged(location);
+//                                }
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Log.d("MapDemoActivity", "Error trying to get last GPS location");
+//                                e.printStackTrace();
+//                            }
+//                        });
+//            }
+//        }
+//    }
 
     //    protected void loadMap(GoogleMap googleMap) {
 //        map = googleMap;

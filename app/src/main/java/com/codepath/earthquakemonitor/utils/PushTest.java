@@ -1,4 +1,4 @@
-package com.codepath.earthquakemonitor;
+package com.codepath.earthquakemonitor.utils;
 
 
 import com.parse.ParseCloud;
