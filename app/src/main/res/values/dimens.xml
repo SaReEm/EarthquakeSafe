@@ -7,4 +7,5 @@
     <dimen name="defaultBtnRightPadding">16dp</dimen>
     <dimen name="defaultBtnTextSize">14sp</dimen>
     <dimen name="btnSigninWidth">189dp</dimen>
+    <dimen name="textSizeMag">24sp</dimen>
 </resources>
