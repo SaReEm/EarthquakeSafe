@@ -24,11 +24,12 @@
     </android.support.design.widget.AppBarLayout>
 
     <TextView
-        android:layout_below="@id/appBar"
         android:id="@+id/tvFriendsListTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Friends"/>
+        android:layout_below="@id/appBar"
+        android:text="Friends"
+        android:textSize="18sp" />
 
     <TextView
         android:layout_below="@id/tvFriendsListTitle"
@@ -44,5 +45,15 @@
         android:layout_width="match_parent"
         android:layout_height="400dp">
     </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:background="@drawable/rounded_shape"
+        android:id="@+id/btnAddFriend"
+        android:layout_width="@dimen/btnSigninWidth"
+        android:layout_height="wrap_content"
+        android:text="Invite Friend"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp" />
 
 </RelativeLayout>
