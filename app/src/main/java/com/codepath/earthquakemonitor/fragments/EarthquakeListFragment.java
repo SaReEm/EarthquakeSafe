@@ -2,6 +2,7 @@ package com.codepath.earthquakemonitor.fragments;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -40,6 +41,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.maps.android.ui.IconGenerator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -164,9 +166,16 @@ public class EarthquakeListFragment extends Fragment
     }
 
     private void addMarkerOnEarthquake(Earthquake earthquake){
-        // Set the color of the marker to green
-        BitmapDescriptor defaultMarker =
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+        // Customize marker
+        IconGenerator iconGenerator = new IconGenerator(getContext());
+        // Possible color options:
+        // STYLE_WHITE, STYLE_RED, STYLE_BLUE, STYLE_GREEN, STYLE_PURPLE, STYLE_ORANGE
+        iconGenerator.setStyle(IconGenerator.STYLE_ORANGE);
+        // Swap text here to live inside speech bubble
+        Bitmap bitmap = iconGenerator.makeIcon();
+        // Use BitmapDescriptorFactory to create the marker
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromBitmap(bitmap);
+
         // listingPosition is a LatLng point
         LatLng listingPosition = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
         // Create the marker on the fragment
@@ -174,7 +183,7 @@ public class EarthquakeListFragment extends Fragment
                 .position(listingPosition)
                 .title("Some title here")
                 .snippet("Some description here")
-                .icon(defaultMarker));
+                .icon(icon));
         mMarkers.add(mapMarker);
     }
 
