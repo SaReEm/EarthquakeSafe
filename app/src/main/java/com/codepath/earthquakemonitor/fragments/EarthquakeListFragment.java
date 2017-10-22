@@ -216,11 +216,11 @@ public class EarthquakeListFragment extends Fragment
         map = googleMap;
         if (map != null) {
             // Map is ready
-            Toast.makeText(getContext(), "Map Fragment was loaded properly!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Map Fragment was loaded properly!");
             EarthquakeListFragmentPermissionsDispatcher.getMyLocationWithCheck(this);
             EarthquakeListFragmentPermissionsDispatcher.startLocationUpdatesWithCheck(this);
         } else {
-            Toast.makeText(getContext(), "Error - Map was null!!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Error - Map was null!!");
         }
     }
 
@@ -303,12 +303,12 @@ public class EarthquakeListFragment extends Fragment
         // Display the connection status
 
         if (mCurrentLocation != null) {
-            Toast.makeText(getContext(), "GPS location was found!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "GPS location was found!");
             LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
             map.animateCamera(cameraUpdate);
         } else {
-            Toast.makeText(getContext(), "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Current location was null, enable GPS on emulator!");
         }
         EarthquakeListFragmentPermissionsDispatcher.startLocationUpdatesWithCheck(this);
     }
@@ -339,7 +339,7 @@ public class EarthquakeListFragment extends Fragment
     public void onLocationChanged(Location location) {
         // GPS may be turned off
         if (location == null) {
-            Toast.makeText(getContext(),"TurnOn your GPS to sea earthquake around you", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"2-TurnOn your GPS to sea earthquake around you", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -350,7 +350,7 @@ public class EarthquakeListFragment extends Fragment
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-//        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, msg);
 
         // Center the camera to the current location and zoom in
         LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());

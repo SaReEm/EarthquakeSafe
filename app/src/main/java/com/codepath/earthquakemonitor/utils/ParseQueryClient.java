@@ -26,6 +26,8 @@ public class ParseQueryClient {
         List<ParseUser> follows = getFollows();
         if (!follows.contains(newFollow))
             follows.add(newFollow);
+        ParseUser.getCurrentUser().put("follows", follows);
+        ParseUser.getCurrentUser().saveInBackground();
     }
 
     public static List<ParseUser> getFollows() {

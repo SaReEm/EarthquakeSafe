@@ -42,6 +42,7 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 @RuntimePermissions
 public class FriendsLocationActivity extends AppCompatActivity
 {
+    private final String TAG = "FriendsLocationActTAG";
     // Map parameters
     private SupportMapFragment mapFragment;
     private GoogleMap map;
@@ -219,12 +220,13 @@ public class FriendsLocationActivity extends AppCompatActivity
         // Display the connection status
 
         if (mCurrentLocation != null) {
-            Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "GPS location was found!");
             LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
             map.animateCamera(cameraUpdate);
         } else {
-            Toast.makeText(this, "Current location was null, enable GPS on emulator!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Current location was null, enable GPS on emulator!");
+            Toast.makeText(this, "Enable GPS get find earthquakes around you!", Toast.LENGTH_SHORT).show();
         }
         FriendsLocationActivityPermissionsDispatcher.startLocationUpdatesWithCheck(this);
     }
@@ -264,7 +266,7 @@ public class FriendsLocationActivity extends AppCompatActivity
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Log.d(TAG, msg);
     }
 
     public void onSaveInstanceState(Bundle savedInstanceState) {
