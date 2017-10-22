@@ -43,37 +43,58 @@
         android:layout_height="wrap_content" />
     </LinearLayout>
 
+    <!--<TextView-->
+        <!--android:gravity="center"-->
+        <!--android:layout_below="@id/profileCard"-->
+        <!--android:text="Real Time Earthquake Alert Settings"-->
+        <!--android:id="@+id/tvNotificationSettings"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<Switch-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_below="@id/tvNotificationSettings"-->
+        <!--android:id="@+id/switchMyAlert"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="My location" />-->
+
+    <!--<Switch-->
+        <!--android:layout_alignEnd="@id/switchMyAlert"-->
+        <!--android:layout_below="@id/switchMyAlert"-->
+        <!--android:id="@+id/switchFriendsAlert"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Friends Location" />-->
+
     <TextView
+        android:id="@+id/tvSafeStatusTitle"
         android:gravity="center"
-        android:layout_below="@id/profileCard"
-        android:text="Real Time Earthquake Alert Settings"
-        android:id="@+id/tvNotificationSettings"
+        android:text="Safe Status"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_below="@id/profileCard"/>
+
 
     <Switch
+        android:id="@+id/swMySafeStatus"
         android:layout_centerInParent="true"
-        android:layout_below="@id/tvNotificationSettings"
-        android:id="@+id/switchMyAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My location" />
-
-    <Switch
-        android:layout_alignEnd="@id/switchMyAlert"
-        android:layout_below="@id/switchMyAlert"
-        android:id="@+id/switchFriendsAlert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Friends Location" />
+        android:text="Click to share you are safe"
+        android:gravity="center"
+        android:layout_below="@id/tvSafeStatusTitle"
+        android:textOff="N/A"
+        android:textOn="Safe"/>
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="49dp"
+        android:text="LogOut"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/switchMyAlert"
-        android:layout_marginBottom="46dp"
-        android:text="LogOut" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
