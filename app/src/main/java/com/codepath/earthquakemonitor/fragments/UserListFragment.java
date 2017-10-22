@@ -18,8 +18,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserListFragment extends Fragment implements UserAdapter.UserAdapterListener, UserAdapter.BtnListener{
-    UserAdapter userAdapter;
+public class UserListFragment extends Fragment {
     List<ParseUser> users;
     RecyclerView rvUsers;
 
@@ -28,9 +27,7 @@ public class UserListFragment extends Fragment implements UserAdapter.UserAdapte
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragments_users_list, container, false);
         users = new ArrayList<>();
-        userAdapter = new UserAdapter(users, this, this);
         rvUsers = v.findViewById(R.id.rvFriendsList);
-        rvUsers.setAdapter(userAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvUsers.setLayoutManager(linearLayoutManager);
         populateUsers();
@@ -39,17 +36,4 @@ public class UserListFragment extends Fragment implements UserAdapter.UserAdapte
 
     public void populateUsers() {}
 
-
-    @Override
-    public void onItemSelected(View view, int position) {
-
-    }
-
-    @Override
-    public void onClick(View view, int position) {
-        ParseUser user = users.get(position);
-        ParseQueryClient.follow(user);
-        users.remove(position);
-        userAdapter.notifyDataSetChanged();
-    }
 }
