@@ -18,16 +18,14 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
     private List<ParseUser> mFollows;
     private Context context;
     private FollowAdapterListener mListener;
-    private BtnListener mBtnListener;
 
     public interface FollowAdapterListener{
-        public void onItemSelected(View view, int position);
+        public void onUnFollow(View view, int position);
     }
 
-    public FollowAdapter(List<ParseUser> users, FollowAdapterListener listener, BtnListener btnListener) {
+    public FollowAdapter(List<ParseUser> users, FollowAdapterListener listener) {
         mFollows = users;
         mListener = listener;
-        mBtnListener = btnListener;
     }
 
     @Override
@@ -63,24 +61,15 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        mListener.onItemSelected(view, position);
-                    }
-                }
-            });
             tvName = itemView.findViewById(R.id.tvFollowName);
             tvStatus = itemView.findViewById(R.id.tvFollowStatus);
             btnUnfollow = itemView.findViewById(R.id.btn_unfollow);
             btnUnfollow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (mBtnListener != null) {
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        mBtnListener.onClick(view, position);
+                        mListener.onUnFollow(view, position);
                     }
                 }
             });

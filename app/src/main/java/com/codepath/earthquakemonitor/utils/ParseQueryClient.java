@@ -11,7 +11,7 @@ public class ParseQueryClient {
     public static List<ParseUser> getAllUsers() throws ParseException{
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
-        query.whereNotContainedIn("follows", getFollows());
+        //query.whereNotContainedIn("_id", ParseUser.getCurrentUser().getList("follows"));
         try {
             return query.find();
         } catch (ParseException e) {

@@ -12,13 +12,18 @@ import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 
+import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserPagerAdapter;
+import com.codepath.earthquakemonitor.fragments.AllUserFragment;
+import com.codepath.earthquakemonitor.fragments.MyFollowsFragment;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
-public class FriendsListActivity extends AppCompatActivity
+public class FriendsListActivity extends AppCompatActivity  implements FollowAdapter.FollowAdapterListener, UserAdapter.UserAdapterListener
 {
     private UserPagerAdapter userPagerAdapter;
 
@@ -68,6 +73,24 @@ public class FriendsListActivity extends AppCompatActivity
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onUnFollow(View view, int position) {
+        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(1);
+        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(0);
+        allUserFragment.onUnFollow(myFollowsFragment.users.get(position));
+        myFollowsFragment.onUnFollow(position);
+
+    }
+
+    @Override
+    public void onFollow(View view, int position) {
+        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(1);
+        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(0);
+        myFollowsFragment.onFollow(allUserFragment.users.get(position));
+        allUserFragment.onFollow(position);
+
     }
 
     /*public void showFriendsLocation(View view)
