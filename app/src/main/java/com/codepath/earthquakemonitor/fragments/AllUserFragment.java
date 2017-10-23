@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserAdapter;
+import com.codepath.earthquakemonitor.FriendsListActivity;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
 import com.parse.ParseException;
@@ -19,9 +20,9 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllUserFragment extends Fragment implements UserAdapter.UserAdapterListener, UserAdapter.BtnListener{
+public class AllUserFragment extends Fragment {
     UserAdapter userAdapter;
-    List<ParseUser> users;
+    public List<ParseUser> users;
     RecyclerView rvUsers;
 
     @Nullable
@@ -29,7 +30,7 @@ public class AllUserFragment extends Fragment implements UserAdapter.UserAdapter
         View v = inflater.inflate(R.layout.fragments_users_list, container, false);
         users = new ArrayList<>();
         rvUsers = v.findViewById(R.id.rvFriendsList);
-        userAdapter = new UserAdapter(users, this, this);
+        userAdapter = new UserAdapter(users, (FriendsListActivity) getActivity());
         rvUsers.setAdapter(userAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvUsers.setLayoutManager(linearLayoutManager);
@@ -47,13 +48,7 @@ public class AllUserFragment extends Fragment implements UserAdapter.UserAdapter
         userAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onItemSelected(View view, int position) {
-
-    }
-
-    @Override
-    public void onClick(View view, int position) {
+    public void onFollow(int position) {
         ParseUser user = users.get(position);
         try {
             ParseQueryClient.follow(user);
@@ -64,4 +59,8 @@ public class AllUserFragment extends Fragment implements UserAdapter.UserAdapter
         userAdapter.notifyDataSetChanged();
     }
 
+    public void onUnFollow(ParseUser user) {
+        users.add(user);
+        userAdapter.notifyDataSetChanged();
+    }
 }

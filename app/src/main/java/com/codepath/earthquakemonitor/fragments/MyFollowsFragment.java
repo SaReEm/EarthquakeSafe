@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserAdapter;
+import com.codepath.earthquakemonitor.FriendsListActivity;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
 import com.parse.ParseException;
@@ -20,9 +21,9 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFollowsFragment extends Fragment implements FollowAdapter.FollowAdapterListener, FollowAdapter.BtnListener{
+public class MyFollowsFragment extends Fragment{
     FollowAdapter followAdapter;
-    List<ParseUser> users;
+    public List<ParseUser> users;
     RecyclerView rvUsers;
 
     @Nullable
@@ -31,7 +32,7 @@ public class MyFollowsFragment extends Fragment implements FollowAdapter.FollowA
         View v = inflater.inflate(R.layout.fragments_users_list, container, false);
         users = new ArrayList<>();
         rvUsers = v.findViewById(R.id.rvFriendsList);
-        followAdapter = new FollowAdapter(users, this, this);
+        followAdapter = new FollowAdapter(users, (FriendsListActivity) getActivity());
         rvUsers.setAdapter(followAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvUsers.setLayoutManager(linearLayoutManager);
@@ -50,13 +51,13 @@ public class MyFollowsFragment extends Fragment implements FollowAdapter.FollowA
         followAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onItemSelected(View view, int position) {
+    public void onFollow(ParseUser user) {
+        users.add(user);
+        followAdapter.notifyDataSetChanged();
 
     }
 
-    @Override
-    public void onClick(View view, int position) {
+    public void onUnFollow(int position) {
         ParseUser user = users.get(position);
         try {
             ParseQueryClient.unfollow(user);

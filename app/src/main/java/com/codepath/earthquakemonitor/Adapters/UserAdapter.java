@@ -20,16 +20,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private List<ParseUser> mUsers;
     private Context context;
     private UserAdapterListener mListener;
-    private BtnListener mBtnListener;
 
     public interface  UserAdapterListener {
-        public void onItemSelected(View view, int position);
+        public void onFollow(View view, int position);
     }
 
-    public UserAdapter(List<ParseUser> users, UserAdapterListener listener, BtnListener btnListener) {
+    public UserAdapter(List<ParseUser> users, UserAdapterListener listener) {
         mUsers = users;
         mListener = listener;
-        mBtnListener = btnListener;
     }
 
     @Override
@@ -39,10 +37,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
         View userView = inflater.inflate(R.layout.item_user, parent, false);
         ViewHolder viewHolder = new ViewHolder(userView);
         return viewHolder;
-    }
-
-    public interface BtnListener {
-        public void onClick(View view, int position);
     }
 
     @Override
@@ -62,23 +56,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mListener != null) {
-                        int position = getAdapterPosition();
-                        mListener.onItemSelected(view, position);
-                    }
-                }
-            });
             tvName = itemView.findViewById(R.id.tvUserName);
             btnAddFriend = itemView.findViewById(R.id.btn_AddFriend);
             btnAddFriend.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (mBtnListener != null) {
+                    if (mListener != null) {
                         int position = getAdapterPosition();
-                        mBtnListener.onClick(view, position);
+                        mListener.onFollow(view, position);
                     }
                 }
             });
