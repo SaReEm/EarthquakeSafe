@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import com.codepath.earthquakemonitor.utils.PushUtils;
+import com.codepath.earthquakemonitor.utils.ParseQueryClient;
 
 public class ProfileActivity extends AppCompatActivity
 {
@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 Log.d(TAG, "send: " + b);
-                PushUtils.sendPushNotifSafeStatus(b, CHANNEL_NAME);
+                ParseQueryClient.changeSafeStatus(b);
             }
         });
     }

@@ -1,10 +1,6 @@
 package com.codepath.earthquakemonitor.utils;
 
-import com.codepath.earthquakemonitor.models.User;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -51,6 +47,19 @@ public class ParseQueryClient {
             res.add(query.get(id));
         }
         return res;
+    }
+
+    public static void changeSafeStatus(boolean safeStatus){
+        ParseUser user = ParseUser.getCurrentUser();
+        String safeStatusStr;
+        if(safeStatus){
+            safeStatusStr = "safe";
+        }
+        else
+            safeStatusStr = "NC";
+
+        user.put("safeStatusString", safeStatusStr);
+        user.saveInBackground();
     }
 
 }
