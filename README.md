@@ -9,17 +9,22 @@ Time spent: **X** hours spent in total
 
 The following functionality is completed:
 
-* [x] User can **create an account**
-* [x] User can **sign in using other account such as Facebook, Twitter**
-* [X] User can **view earthquakes on a map**
+* [X] User can **create an account** by typing email address and create their own passwords.
+* [X] User can also sign in with other social media account, like **facebook**.
+* [X] User can get the latest earthquakes update in two ways: view on a **map**, or in a **earthquake list**
+* [X] In the earthquake list, useful information are displayed in terms of each earthquake: 
+     **Earthquake magnitude**, **Earthquake position**, **Earthquake timestamp**. 
+* [X] Earthquakes'magnitudes are displayed in **different colors** based on the **severity**, allow users to differentiate         easily. 
+* [X] Earthquakes can also be viewed as **marks on the map** with different colors.
+* [X] User can **click** each mark to view the details about where the earthquake took place.
 * [X] User can **filter earthquake by location, time and magnitude**
  * [X] User can **find the same filters saved even after closing the app**
 * [X] User can **click on an earthquake on the list and will be redirected on the USGS website**
-* [ ] User can **add friends**
-* [ ] User can **set him/herself safe**
-  
+* [X] User can **mark safe** if they survived after an earthquake.
+* [X] User can **follow friends** to see their safty status.
   
 Optionals:
+* [ ] User can send invites to their freinds to download and installed this app, through emails/social media/,etc
 * [ ] User can set **time, location and magnitude of an earthquake to be alerted**
 * [ ] User can **share about an earthquake happening on social media facebook/twitter**
 * [ ] User can set **receive notification when a friend is setting themselves safe**
