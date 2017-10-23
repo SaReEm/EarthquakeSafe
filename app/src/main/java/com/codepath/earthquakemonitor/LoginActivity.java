@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codepath.earthquakemonitor.models.User;
 import com.crashlytics.android.Crashlytics;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -112,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     //change the parseUser to User
                     /*User toUser = new User(user);
                     toUser.saveInBackground();*/
+                    user.put("safeStatus", "NC");
 
                     Intent i = new Intent(LoginActivity.this, MapActivity.class);
                     startActivity(i);
