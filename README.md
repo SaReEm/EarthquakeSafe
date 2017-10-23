@@ -39,7 +39,8 @@ Bonus:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-[Link to GIF Walkthrough Write a Tweet] (https://i.imgur.com/7dKjiIg.mp4)
+<img src='milestone3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
