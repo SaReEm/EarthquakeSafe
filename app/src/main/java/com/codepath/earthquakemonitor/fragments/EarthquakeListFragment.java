@@ -3,6 +3,7 @@ package com.codepath.earthquakemonitor.fragments;
 import android.Manifest;
 import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -160,7 +161,6 @@ public class EarthquakeListFragment extends Fragment
                 Earthquake earthquake = Earthquake.fromJson(jsonArray.getJSONObject(i));
                 earthquakes.add(earthquake);
                 earthquakeAdapter.notifyItemInserted(earthquakes.size() - 1);
-
                 addMarkerOnEarthquake(earthquake);
             }
         }
@@ -173,10 +173,17 @@ public class EarthquakeListFragment extends Fragment
         // Customize marker
         IconGenerator iconGenerator = new IconGenerator(getContext());
         // Possible color options:
-        // STYLE_WHITE, STYLE_RED, STYLE_BLUE, STYLE_GREEN, STYLE_PURPLE, STYLE_ORANGE
-        iconGenerator.setStyle(IconGenerator.STYLE_ORANGE);
+
+        // Change the magnitude color based on the magnitude
+        if (earthquake.getMag() <=4 ) {
+            iconGenerator.setStyle(IconGenerator.STYLE_GREEN);
+        } else if (earthquake.getMag() > 4 && earthquake.getMag() < 6) {
+            iconGenerator.setStyle(IconGenerator.STYLE_ORANGE);
+        } else {
+            iconGenerator.setStyle(IconGenerator.STYLE_RED);
+        }
         // Swap text here to live inside speech bubble
-        Bitmap bitmap = iconGenerator.makeIcon();
+        Bitmap bitmap = iconGenerator.makeIcon(earthquake.getMag().toString());
         // Use BitmapDescriptorFactory to create the marker
         BitmapDescriptor icon = BitmapDescriptorFactory.fromBitmap(bitmap);
 
@@ -185,8 +192,8 @@ public class EarthquakeListFragment extends Fragment
         // Create the marker on the fragment
         Marker mapMarker = map.addMarker(new MarkerOptions()
                 .position(listingPosition)
-                .title("Some title here")
-                .snippet("Some description here")
+                .title(earthquake.getPlace().toString())
+//                .snippet(earthquake.getPlace())
                 .icon(icon));
         mMarkers.add(mapMarker);
     }

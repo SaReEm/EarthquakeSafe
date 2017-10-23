@@ -1,6 +1,7 @@
 package com.codepath.earthquakemonitor.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,14 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
         // Populate the views according to this data
         holder.tvPlace.setText(earthquake.getPlace());
         holder.tvMagnitude.setText(earthquake.getMag().toString());
+        // Change the magnitude color based on the magnitude
+        if (earthquake.getMag() <=4 ) {
+            holder.tvMagnitude.setTextColor(Color.GREEN);
+        } else if (earthquake.getMag() > 4 && earthquake.getMag() < 6) {
+            holder.tvMagnitude.setTextColor(Color.YELLOW);
+        } else {
+            holder.tvMagnitude.setTextColor(Color.RED);
+        }
         holder.tvTimeStamp.setText(ConversionsUtils.getRelativeTimeAgo(earthquake.getTime()));
     }
 
