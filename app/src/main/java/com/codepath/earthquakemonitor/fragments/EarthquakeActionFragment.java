@@ -1,6 +1,7 @@
 package com.codepath.earthquakemonitor.fragments;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 
 /**
  * Created by hezhang on 10/23/17.
@@ -19,7 +22,7 @@ import com.codepath.earthquakemonitor.R;
 
 public class EarthquakeActionFragment extends DialogFragment
 {
-    private ImageButton btnFbShare;
+    private ShareButton btnFbShare;
     private ImageButton btnFindOnMap;
 
     public EarthquakeActionFragment() {
@@ -38,8 +41,16 @@ public class EarthquakeActionFragment extends DialogFragment
     {
         View view = inflater.inflate(R.layout.fragment_earthquake_action, container);
 
-        btnFbShare = view.findViewById(R.id.btnFbShare);
+        // Define the share content as the usgs url
+        ShareLinkContent content = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .build();
+
+        btnFbShare = (ShareButton) view.findViewById(R.id.btnFbShare);
         btnFindOnMap = view.findViewById(R.id.btnFindOnMap);
+
+        // Add a share button
+        btnFbShare.setShareContent(content);
 
         btnFbShare.setOnClickListener(new View.OnClickListener()
         {
