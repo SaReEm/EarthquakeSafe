@@ -27,6 +27,7 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
     // Define an interface required by the ViewHolder
     public interface EarthquakeAdapterListener {
         public void onItemSelected(View view, int position);
+        public void onItemLongClickSelected(View view, int position);
     }
 
     // Pass in the earthquake array in the constructor
@@ -81,7 +82,8 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
         public TextView tvMagnitude;
         public TextView tvTimeStamp;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView)
+        {
             super(itemView);
 
             // Perform findViewById lookups
@@ -91,9 +93,11 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
             tvTimeStamp = (TextView) itemView.findViewById(R.id.tvTimeStamp);
 
             // Handle row click event
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener()
+            {
                 @Override
-                public void onClick(View v) {
+                public void onClick(View v)
+                {
                     // get the position of row element
                     if (mListener != null) {
                         // Get the position of row element
@@ -104,19 +108,21 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
                 }
             });
 
-//            // Handle item click event
-//            tvPlace.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // Get the position of the image element
-//                    if (mListener != null) {
-//                        // Get the position of row element
-//                        int position = getAdapterPosition();
-//                        // fire the listener callback
-//                        mListener.onItemSelected(v, position);
-//                    }
-//                }
-//            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener()
+            {
+                @Override
+                public boolean onLongClick(View view)
+                {
+                    // get the position of row element
+                    if (mListener != null) {
+                        // Get the position of row element
+                        int position = getAdapterPosition();
+                        // fire the listener callback
+                        mListener.onItemLongClickSelected(view, position);
+                    }
+                    return true;
+                }
+            });
         }
     }
 

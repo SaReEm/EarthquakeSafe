@@ -2,6 +2,11 @@ package com.codepath.earthquakemonitor.fragments;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
@@ -9,7 +14,6 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -205,11 +209,19 @@ public class EarthquakeListFragment extends Fragment
         }
     }
 
-//
+    // Handle the onClick event on each earthquake
     @Override
     public void onItemSelected(View view, int position) {
         Earthquake earthquake = earthquakes.get(position);
         ((EarthquakeSelectedListener) getActivity()).onEarthquakeClicked(earthquake);
+    }
+
+    // Handle the LongOnClick event on each earthquake
+    public void onItemLongClickSelected(View view, int position) {
+        Toast.makeText(getContext(), "launch fragment", Toast.LENGTH_SHORT).show();
+        EarthquakeActionFragment earthquakeActionFragment = new EarthquakeActionFragment();
+        earthquakeActionFragment.setTargetFragment(EarthquakeListFragment.this, 300);
+        earthquakeActionFragment.show(getFragmentManager(), "earthquakeAction");
     }
 
     protected void loadMap(GoogleMap googleMap) {

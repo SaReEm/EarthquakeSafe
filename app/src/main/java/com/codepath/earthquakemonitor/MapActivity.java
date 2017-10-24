@@ -51,17 +51,6 @@ public class MapActivity extends AppCompatActivity
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
 
-//        if (TextUtils.isEmpty(getResources().getString(R.string.google_maps_api_key))) {
-//            throw new IllegalStateException("You forgot to supply a Google Maps API key");
-//        }
-
-//        if (savedInstanceState != null && savedInstanceState.keySet().contains(KEY_LOCATION)) {
-//            // Since KEY_LOCATION was found in the Bundle, we can be sure that mCurrentLocation
-//            // is not null.
-//            mCurrentLocation = savedInstanceState.getParcelable(KEY_LOCATION);
-//        }
-
-        //TODO Create the earthquake list fragment
         // Create the user fragment
         homeEarthquakeListFragment = new HomeEarthquakeListFragment();
         // Display the user timeline fragment inside the container (dynamically)
