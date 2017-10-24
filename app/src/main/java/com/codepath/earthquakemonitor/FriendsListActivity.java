@@ -1,5 +1,6 @@
 package com.codepath.earthquakemonitor;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ShareActionProvider;
 
 import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserAdapter;
@@ -26,6 +29,8 @@ import java.util.ArrayList;
 public class FriendsListActivity extends AppCompatActivity  implements FollowAdapter.FollowAdapterListener, UserAdapter.UserAdapterListener
 {
     private UserPagerAdapter userPagerAdapter;
+
+    private Button btnInvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +50,19 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
 
+        // Send out the app's github url to invite friends
+        btnInvite = (Button) findViewById(R.id.btnInvite);
+        btnInvite.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, "https://github.com/SaReEm/EarthquakeSafe");
+                startActivity(Intent.createChooser(shareIntent, "Share link using"));
+            }
+        });
     }
 
     @Override
