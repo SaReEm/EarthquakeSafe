@@ -70,25 +70,25 @@
     </LinearLayout>
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/distanceLayout"
-    android:layout_below="@id/llStartTime">
-    <CheckBox
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:id="@+id/cbUseDistance"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" />
-    <TextView
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:textSize="@dimen/filterSettingFontSize"
-        android:gravity="center"
-        android:id="@+id/tvDistance"
-        android:text="@string/check_earthquakes_around_you"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:id="@+id/distanceLayout"
+        android:layout_below="@id/llStartTime">
+        <CheckBox
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:id="@+id/cbUseDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
+        <TextView
+            android:layout_marginTop="@dimen/filterSettingsMarginTop"
+            android:textSize="@dimen/filterSettingFontSize"
+            android:gravity="center"
+            android:id="@+id/tvDistance"
+            android:text="@string/check_earthquakes_around_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvDistanceDisplayed"
@@ -98,14 +98,14 @@
         android:layout_below="@+id/distanceLayout"
         android:layout_centerHorizontal="true" />
 
-        <SeekBar
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
-            android:layout_below="@id/distanceLayout"
-            android:id="@+id/seekBarDistance"
-            android:layout_width="@dimen/filterSeekBarWidth"
-            android:layout_height="wrap_content"
-            android:max="20000"/>
+    <SeekBar
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:layout_below="@id/distanceLayout"
+        android:id="@+id/seekBarDistance"
+        android:layout_width="@dimen/filterSeekBarWidth"
+        android:layout_height="wrap_content"
+        android:max="20000"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
