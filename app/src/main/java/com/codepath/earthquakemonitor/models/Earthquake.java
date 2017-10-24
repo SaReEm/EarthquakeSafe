@@ -1,5 +1,7 @@
 package com.codepath.earthquakemonitor.models;
 
+import android.os.Parcelable;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,7 +11,8 @@ import org.parceler.Parcel;
  * Created by emilie on 10/9/17.
  */
 @Parcel
-public class Earthquake{
+public class Earthquake
+{
 
     //todo clean up the unnecessary param
     public Double mag;

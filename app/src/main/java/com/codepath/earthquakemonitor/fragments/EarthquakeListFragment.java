@@ -2,6 +2,12 @@ package com.codepath.earthquakemonitor.fragments;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.Parcelable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.location.Location;
@@ -9,7 +15,6 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -48,6 +53,7 @@ import com.google.maps.android.ui.IconGenerator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -205,11 +211,30 @@ public class EarthquakeListFragment extends Fragment
         }
     }
 
-//
+    // Handle the onClick event on each earthquake
     @Override
     public void onItemSelected(View view, int position) {
         Earthquake earthquake = earthquakes.get(position);
         ((EarthquakeSelectedListener) getActivity()).onEarthquakeClicked(earthquake);
+    }
+
+    // Handle the LongOnClick event on each earthquake
+    public void onItemLongClickSelected(View view, int position) {
+        // Get the current earthquake
+        Earthquake earthquake = earthquakes.get(position);
+        //Toast.makeText(getContext(), "launch fragment", Toast.LENGTH_SHORT).show();
+
+        // Create new fragment
+        EarthquakeActionFragment earthquakeActionFragment = new EarthquakeActionFragment();
+
+        // Pass the earthquake object to the fragment
+        Bundle bundle = new Bundle();
+
+        bundle.putParcelable("Earthquake", Parcels.wrap(earthquake));
+        earthquakeActionFragment.setArguments(bundle);
+
+        earthquakeActionFragment.setTargetFragment(EarthquakeListFragment.this, 300);
+        earthquakeActionFragment.show(getFragmentManager(), "earthquakeAction");
     }
 
     protected void loadMap(GoogleMap googleMap) {

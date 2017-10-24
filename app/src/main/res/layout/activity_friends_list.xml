@@ -16,7 +16,7 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="400dp">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -39,18 +39,17 @@
                 android:layout_height="0px"
                 android:layout_weight="1"
                 android:background="@android:color/white" />
-
         </android.support.design.widget.AppBarLayout>
     </LinearLayout>
-    <!--<Button-->
-    <!--android:background="@drawable/rounded_shape"-->
-    <!--android:id="@+id/btnAddFriend"-->
-    <!--android:layout_width="@dimen/btnSigninWidth"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="Invite Friend"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_below="@id/llVertical"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginBottom="18dp" />-->
+
+    <Button
+        android:background="@drawable/rounded_shape"
+        android:id="@+id/btnInvite"
+        android:layout_width="@dimen/btnSigninWidth"
+        android:layout_height="wrap_content"
+        android:text="Invite Friend"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp" />
 </RelativeLayout>
 
