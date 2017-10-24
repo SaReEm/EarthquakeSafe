@@ -50,11 +50,12 @@ public class EarthquakeActionFragment extends DialogFragment
             }
         });
 
-        btnFbShare.setOnClickListener(new View.OnClickListener()
+        btnFindOnMap.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
+                // Center the current earthquake on the map
                 Toast.makeText(getActivity(), "Focus", Toast.LENGTH_SHORT).show();
             }
         });
