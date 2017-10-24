@@ -13,8 +13,11 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
+import com.codepath.earthquakemonitor.models.Earthquake;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareButton;
+
+import org.parceler.Parcels;
 
 /**
  * Created by hezhang on 10/23/17.
@@ -28,12 +31,6 @@ public class EarthquakeActionFragment extends DialogFragment
     public EarthquakeActionFragment() {
     }
 
-    public static EarthquakeActionFragment newInstance() {
-        EarthquakeActionFragment earthquakeActionFragment = new EarthquakeActionFragment();
-        Bundle args = new Bundle();
-        earthquakeActionFragment.setArguments(args);
-        return earthquakeActionFragment;
-    }
 
     @Nullable
     @Override
@@ -41,9 +38,13 @@ public class EarthquakeActionFragment extends DialogFragment
     {
         View view = inflater.inflate(R.layout.fragment_earthquake_action, container);
 
+        // Get the earthquake object
+        Earthquake earthquake = Parcels.unwrap(getArguments().getParcelable("Earthquake"));
+        Toast.makeText(getContext(),earthquake.getUrl(), Toast.LENGTH_SHORT).show();
+
         // Define the share content as the usgs url
         ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .setContentUrl(Uri.parse(earthquake.getUrl()))
                 .build();
 
         btnFbShare = (ShareButton) view.findViewById(R.id.btnFbShare);
