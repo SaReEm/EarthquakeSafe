@@ -6,29 +6,44 @@
     android:layout_height="match_parent"
     tools:context="com.codepath.earthquakemonitor.LoginActivity">
 
-    <LinearLayout
-        android:layout_margin="10dp"
+    <RelativeLayout
         android:id="@+id/loginCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="@drawable/round_corner_card"
-        android:orientation="vertical">
+        android:background="@drawable/round_corner_card">
 
         <TextView
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/tvAppTitle"
             android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="EarthquakeSafe"
+            android:text="Earthquake"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="@dimen/textSizeAppName" />
+
+        <TextView
+            android:id="@+id/tvSafe"
+            android:layout_toRightOf="@id/tvAppTitle"
+            android:textStyle="bold"
+            android:textColor="#a8fab6"
+            android:textSize="@dimen/textSizeAppName"
+            android:text="Safe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvAppTitle"
+            android:layout_alignBottom="@+id/tvAppTitle" />
 
         <EditText
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvAppTitle"
             android:textColor="@android:color/white"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,8 +51,12 @@
             android:inputType="text" />
 
         <EditText
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/et_name"
             android:textColor="@android:color/white"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,6 +64,8 @@
             android:inputType="textPassword" />
 
         <Button
+            android:layout_centerInParent="true"
+            android:layout_below="@id/et_password"
             android:id="@+id/btn_login"
             android:layout_width="@dimen/btnSigninWidth"
             android:layout_height="wrap_content"
@@ -59,6 +80,8 @@
             android:textSize="@dimen/defaultBtnTextSize" />
 
         <Button
+            android:layout_centerInParent="true"
+            android:layout_below="@id/btn_login"
             android:paddingRight="@dimen/defaultBtnRightPadding"
             android:paddingLeft="@dimen/defaultBtnLeftPadding"
             android:background="@drawable/rounded_shape_fb"
@@ -69,6 +92,7 @@
             android:layout_height="48dp"/>
 
         <TextView
+            android:layout_below="@id/btn_fblogin"
             android:layout_marginTop="50dp"
             android:background="?attr/selectableItemBackground"
             android:onClick="signUp"
@@ -78,6 +102,6 @@
             android:gravity="center"
             android:text="No account yet? Create one"
             android:textSize="16dip" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

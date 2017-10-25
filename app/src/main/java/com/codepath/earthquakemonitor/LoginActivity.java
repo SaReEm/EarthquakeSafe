@@ -1,10 +1,13 @@
 package com.codepath.earthquakemonitor;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ import io.fabric.sdk.android.Fabric;
 public class LoginActivity extends AppCompatActivity {
     EditText etName;
     EditText etPassword;
+    TextView tvSafe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +41,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Find views
         etName = findViewById(R.id.et_name);
         etPassword = findViewById(R.id.et_password);
+        tvSafe = findViewById(R.id.tvSafe);
+
+        //Perform animation
+        ObjectAnimator moveAnim = ObjectAnimator.ofFloat(tvSafe, "Y", 90);
+        moveAnim.setDuration(2000);
+        moveAnim.setInterpolator(new BounceInterpolator());
+        moveAnim.start();
 
         // Handle sigin button onClick
         Button btnLogIn = findViewById(R.id.btn_login);
@@ -77,14 +89,6 @@ public class LoginActivity extends AppCompatActivity {
                 //PushTest.sendPushTest();
             }
         });
-
-        //Piece of code to test earthquake API /////////////////////////////////////////
-//        EarthquakeClient client = EarthquakeClient.getInstance(this);
-//        EarthquakesJsonHttpResponseHandler handler = new EarthquakesJsonHttpResponseHandler();
-//        Double currentLatitude = -122.077655;
-//        Double currentLongitude = 37.395605;
-//        Filters filter = Filters.getInstance();
-//        client.getEarthquakeWithFilter(currentLatitude, currentLongitude, filter, handler);
 
     }
 
