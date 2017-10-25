@@ -44,13 +44,19 @@ public class MapActivity extends AppCompatActivity
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
-
+        
         // Create the user fragment
-        homeEarthquakeListFragment = new HomeEarthquakeListFragment();
         // Display the user timeline fragment inside the container (dynamically)
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Make change
-        ft.replace(R.id.flContainer, homeEarthquakeListFragment);
+
+        homeEarthquakeListFragment = new HomeEarthquakeListFragment();
+        if(homeEarthquakeListFragment.isAdded()){
+            ft.show(homeEarthquakeListFragment);
+        }
+        else{
+            // Make change
+            ft.add(R.id.flContainer, homeEarthquakeListFragment);
+        }
         // Commit
         ft.commit();
 

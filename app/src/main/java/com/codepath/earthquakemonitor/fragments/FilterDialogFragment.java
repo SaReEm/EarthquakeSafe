@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Filters;
+import com.codepath.earthquakemonitor.utils.ConversionsUtils;
 
 /**
  * Created by hezhang on 10/12/17.
@@ -220,7 +221,9 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
         }
         boolean useDistance = filter.isUseDistance();
         sbDistance.setProgress(dist);
-        tvDistanceDisplay.setText(Integer.toString(dist) + " km");
+        int distMiles = ConversionsUtils.kmToMiles(dist);
+        String distString = distMiles + " miles";
+        tvDistanceDisplay.setText(distString);
         sbDistance.setActivated(useDistance);
         cbUseDistance.setChecked(useDistance);
 
@@ -238,7 +241,9 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
 
         boolean useDepth = filter.isUseDepth();
         sbDepth.setProgress(depth);
-        tvDepthDisplay.setText(Integer.toString(depth) + " km");
+        int depthMiles = ConversionsUtils.kmToMiles(depth);
+        String depthString = depthMiles + " miles";
+        tvDepthDisplay.setText(depthString);
         sbDepth.setActivated(useDepth);
         cbUseDepth.setChecked(useDepth);
 

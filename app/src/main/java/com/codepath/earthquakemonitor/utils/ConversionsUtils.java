@@ -1,6 +1,7 @@
 package com.codepath.earthquakemonitor.utils;
 
 import android.text.format.DateUtils;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -12,6 +13,8 @@ import java.util.Locale;
 
 public class ConversionsUtils {
 
+    public static final String TAG ="ConversionsUtilsTAG";
+
     public static Double milesToKm(Double miles) {
         Double km = 0.621371 * miles;
         return km;
@@ -19,7 +22,17 @@ public class ConversionsUtils {
 
     public static Double kmToMiles(Double km) {
         Double miles = 1.609344 * km;
+        Log.d(TAG, "Converting " + km + "km to " + miles + " miles");
         return miles;
+    }
+
+    public static int kmToMiles(int km) {
+        double kmDouble = (double)km;
+
+        double miles = 0.621371 * kmDouble;
+        int milesInt = (int) miles;
+        Log.d(TAG, "Converting " + km + "km to " + milesInt + " miles");
+        return milesInt;
     }
 
     public static Calendar epochToCalendar(Long time) {
