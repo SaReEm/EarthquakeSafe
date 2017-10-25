@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         tvSafe = findViewById(R.id.tvSafe);
 
         //Perform animation
-        ObjectAnimator moveAnim = ObjectAnimator.ofFloat(tvSafe, "Y", 90);
-        moveAnim.setDuration(2000);
+        ObjectAnimator moveAnim = ObjectAnimator.ofFloat(tvSafe, "Y", 30);
+        moveAnim.setDuration(1000);
         moveAnim.setInterpolator(new BounceInterpolator());
         moveAnim.start();
 
