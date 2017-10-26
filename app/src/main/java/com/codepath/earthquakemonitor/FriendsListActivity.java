@@ -95,8 +95,8 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
 
     @Override
     public void onUnFollow(View view, int position) {
-        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(1);
-        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(0);
+        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(0);
+        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(1);
         allUserFragment.onUnFollow(myFollowsFragment.users.get(position));
         myFollowsFragment.onUnFollow(position);
 
@@ -104,8 +104,8 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
 
     @Override
     public void onFollow(View view, int position) {
-        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(1);
-        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(0);
+        MyFollowsFragment myFollowsFragment = (MyFollowsFragment) userPagerAdapter.getRegisteredFragment(0);
+        AllUserFragment allUserFragment = (AllUserFragment) userPagerAdapter.getRegisteredFragment(1);
         myFollowsFragment.onFollow(allUserFragment.users.get(position));
         allUserFragment.onFollow(position);
 
