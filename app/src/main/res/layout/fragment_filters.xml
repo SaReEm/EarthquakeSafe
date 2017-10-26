@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary">
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:background="#363fe9">
 
     <LinearLayout
+        android:paddingTop="40dp"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/magnitudeLayout"
-        android:gravity="center"
         android:orientation="horizontal">
 
         <CheckBox
@@ -19,14 +21,14 @@
 
         <TextView
             android:id="@+id/tvMagnitude"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="@string/magnitude_filter_text"
             android:textSize="@dimen/filterSettingFontSize" />
     </LinearLayout>
 
     <TextView
+        android:textSize="@dimen/filterSettingFontSize"
         android:id="@+id/tvMagnitudeDisplayed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,10 +48,11 @@
         android:progress="3" />
 
     <LinearLayout
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:id="@+id/llStartTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_below="@id/seekBarMagnitude"
         android:gravity="center">
 
@@ -61,29 +64,30 @@
             android:textSize="@dimen/filterSettingFontSize" />
 
         <Button
+            android:background="@drawable/rounded_shape"
             android:id="@+id/btnStartTimeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today's date"
+            android:text="Pick date"
+            android:textSize="14sp"
             android:layout_centerHorizontal="true"
             android:onClick="showTimePickerDialog"/>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/distanceLayout"
         android:layout_below="@id/llStartTime">
         <CheckBox
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
             android:id="@+id/cbUseDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center" />
         <TextView
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
             android:textSize="@dimen/filterSettingFontSize"
-            android:gravity="center"
             android:id="@+id/tvDistance"
             android:text="@string/check_earthquakes_around_you"
             android:layout_width="wrap_content"
@@ -91,52 +95,56 @@
     </LinearLayout>
 
     <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/tvDistanceDisplayed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20 000 km"
+        android:textSize="@dimen/filterSettingFontSize"
         android:layout_below="@+id/distanceLayout"
         android:layout_centerHorizontal="true" />
 
     <SeekBar
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
-        android:layout_below="@id/distanceLayout"
+        android:layout_below="@id/tvDistanceDisplayed"
         android:id="@+id/seekBarDistance"
         android:layout_width="@dimen/filterSeekBarWidth"
         android:layout_height="wrap_content"
         android:max="20000"/>
+
     <LinearLayout
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/depthLayout"
         android:layout_below="@id/seekBarDistance">
         <CheckBox
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
             android:id="@+id/cbUseDepth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center" />
         <TextView
-            android:layout_marginTop="@dimen/filterSettingsMarginTop"
             android:textSize="@dimen/filterSettingFontSize"
-            android:gravity="center"
             android:layout_below="@id/seekBarDistance"
             android:id="@+id/tvDepth"
             android:text="@string/maximum_depth_filter_text"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
     <TextView
+        android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:id="@+id/tvDepthDisplayed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1 000 km"
+        android:textSize="@dimen/filterSettingFontSize"
         android:layout_below="@+id/depthLayout"
         android:layout_centerHorizontal="true" />
+
     <SeekBar
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/filterSettingsMarginTop"
         android:layout_below="@id/tvDepthDisplayed"
         android:id="@+id/seekBarDepth"
         android:layout_width="@dimen/filterSeekBarWidth"
@@ -149,6 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_shape"
         android:text="@string/btnSaveFilters" />
 
 </RelativeLayout>
