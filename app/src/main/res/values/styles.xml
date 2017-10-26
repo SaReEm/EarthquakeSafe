@@ -9,4 +9,7 @@
         <item name="colorControlActivated">#faf8f8</item>
         <item name="android:textColor">#ffffffff</item>
     </style>
+    <style name="WhiteCheck">
+        <item name="colorAccent">#fff</item>
+    </style>
 </resources>
