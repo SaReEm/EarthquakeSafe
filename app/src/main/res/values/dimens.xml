@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="filterSettingFontSize">18sp</dimen>
+    <dimen name="filterSettingFontSize">16sp</dimen>
     <dimen name="filterSettingsMarginTop">20dp</dimen>
     <dimen name="filterSeekBarWidth">300dp</dimen>
     <dimen name="defaultBtnLeftPadding">16dp</dimen>
@@ -11,4 +11,7 @@
     <dimen name="btnDefaultHeight">36dp</dimen>
     <dimen name="textSizeAppName">32sp</dimen>
     <dimen name="marginTopFilterSettingsSmall">10dp</dimen>
+    <dimen name="filterTitlePadding">20dp</dimen>
+    <dimen name="defaultTitleSize">20sp</dimen>
+    <dimen name="filterSettingsLeftMarging">10dp</dimen>
 </resources>
