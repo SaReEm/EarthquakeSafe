@@ -19,14 +19,15 @@ The following functionality is completed:
 * [X] User can **click** each mark to view the details about where the earthquake took place.
 * [X] User can **filter earthquake by location, time and magnitude**
  * [X] User can **find the same filters saved even after closing the app**
-* [X] User can **click on an earthquake on the list and will be redirected on the USGS website**
+* [X] User can click on an earthquake on the list and view it closely, by the camera's centering and zooming in on the map.  
+* [X] User can be **redirected to the USGS website** to get extending information on one earthquake. 
 * [X] User can **mark safe** if they survived after an earthquake.
 * [X] User can **follow friends** to see their safty status.
   
 Optionals:
-* [ ] User can send invites to their freinds to download and installed this app, through emails/social media/,etc
+* [X] User can send invites to their freinds to download and installed this app, through emails/social media/,etc
 * [ ] User can set **time, location and magnitude of an earthquake to be alerted**
-* [ ] User can **share about an earthquake happening on social media facebook/twitter**
+* [X] User can **share about an earthquake happening on social media facebook/twitter**
 * [ ] User can set **receive notification when a friend is setting themselves safe**
 
 Bonus:
