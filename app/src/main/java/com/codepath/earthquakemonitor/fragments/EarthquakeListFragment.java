@@ -122,8 +122,6 @@ public class EarthquakeListFragment extends Fragment
             Toast.makeText(getContext(), "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
         }
 
-
-
         // inflate the layout
         View v = inflater.inflate(R.layout.fragment_earthquake_list, container, false);
         // Find the recycler view
@@ -140,8 +138,6 @@ public class EarthquakeListFragment extends Fragment
 
         mMarkers = new ArrayList<>();
         return v;
-
-
     }
 
     public void cleanEarthquakes(){
@@ -215,7 +211,9 @@ public class EarthquakeListFragment extends Fragment
     @Override
     public void onItemSelected(View view, int position) {
         Earthquake earthquake = earthquakes.get(position);
-        ((EarthquakeSelectedListener) getActivity()).onEarthquakeClicked(earthquake);
+        LatLng latLng = new LatLng(earthquake.getLatitude(), earthquake.getLongitude());
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(latLng);
+        map.animateCamera(cameraUpdate);
     }
 
     // Handle the LongOnClick event on each earthquake

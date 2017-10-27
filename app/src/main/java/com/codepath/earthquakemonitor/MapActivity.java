@@ -48,7 +48,7 @@ public class MapActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         
         // Create the user fragment
-        // Display the user timeline fragment inside the container (dynamically)
+        // Display the earthquake list fragment inside the container (dynamically)
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 
         homeEarthquakeListFragment = new HomeEarthquakeListFragment();
