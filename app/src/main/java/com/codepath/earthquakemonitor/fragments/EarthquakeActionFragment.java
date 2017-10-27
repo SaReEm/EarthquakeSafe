@@ -39,7 +39,7 @@ public class EarthquakeActionFragment extends DialogFragment
         View view = inflater.inflate(R.layout.fragment_earthquake_action, container);
 
         // Get the earthquake object
-        Earthquake earthquake = Parcels.unwrap(getArguments().getParcelable("Earthquake"));
+        final Earthquake earthquake = Parcels.unwrap(getArguments().getParcelable("Earthquake"));
         Toast.makeText(getContext(),earthquake.getUrl(), Toast.LENGTH_SHORT).show();
 
         // Define the share content as the usgs url
@@ -69,6 +69,9 @@ public class EarthquakeActionFragment extends DialogFragment
             {
                 // Center the current earthquake on the map
                 Toast.makeText(getActivity(), "Focus", Toast.LENGTH_SHORT).show();
+                // Transfer the clicked earthquake's lat/long to the mapActivity
+                ((EarthquakeListFragment.EarthquakeSelectedListener) getActivity()).onEarthquakeClicked(earthquake);
+
             }
         });
 
