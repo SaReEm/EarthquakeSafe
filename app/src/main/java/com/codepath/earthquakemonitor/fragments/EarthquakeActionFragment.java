@@ -9,7 +9,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
@@ -26,7 +28,7 @@ import org.parceler.Parcels;
 public class EarthquakeActionFragment extends DialogFragment
 {
     private ShareButton btnFbShare;
-    private ImageButton btnFindOnMap;
+    private TextView tvUSGS;
 
     public EarthquakeActionFragment() {
     }
@@ -48,7 +50,7 @@ public class EarthquakeActionFragment extends DialogFragment
                 .build();
 
         btnFbShare = (ShareButton) view.findViewById(R.id.btnFbShare);
-        btnFindOnMap = view.findViewById(R.id.btnFindOnMap);
+        tvUSGS = view.findViewById(R.id.btnFindOnMap);
 
         // Add a share button
         btnFbShare.setShareContent(content);
@@ -62,7 +64,7 @@ public class EarthquakeActionFragment extends DialogFragment
             }
         });
 
-        btnFindOnMap.setOnClickListener(new View.OnClickListener()
+        tvUSGS.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
@@ -76,6 +78,12 @@ public class EarthquakeActionFragment extends DialogFragment
         });
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState)
+    {
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override

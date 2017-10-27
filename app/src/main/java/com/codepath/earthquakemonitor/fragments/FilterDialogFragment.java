@@ -267,6 +267,7 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             }
         });
 
+        // Get rid of the title bar
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getDialog().getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
 
