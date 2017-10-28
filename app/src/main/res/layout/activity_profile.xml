@@ -27,9 +27,18 @@
     <ImageView
         android:id="@+id/ivProfilePic"
         android:layout_below="@id/toolbar"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:src="@drawable/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:clickable="true"
+        android:onClick="onClickProfile"/>
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:visibility="invisible"
+            android:layout_below="@id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvProfileName"
@@ -37,11 +46,12 @@
         android:gravity="center"
         android:textSize="26sp"
         android:layout_below="@id/ivProfilePic"
-        tools:text="Name"
+        android:text="Sarem"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     </LinearLayout>
+
 
     <!--<TextView-->
         <!--android:gravity="center"-->
