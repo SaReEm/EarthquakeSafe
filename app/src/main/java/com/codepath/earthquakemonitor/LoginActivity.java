@@ -13,14 +13,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.earthquakemonitor.utils.FBClient;
 import com.crashlytics.android.Crashlytics;
+import com.facebook.AccessToken;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
+import cz.msebera.android.httpclient.Header;
 import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
@@ -111,14 +118,16 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (user == null) {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
                 } else if (user.isNew()) {
-                    Log.d("MyApp", "User signed up and logged in through Facebook!");
+                    Log.d("MyApp", "User signed up and logged in thr    ough Facebook!");
                     //change the parseUser to User
                     /*User toUser = new User(user);
                     toUser.saveInBackground();*/
-                    user.put("safeStatus", "NC");
-
                     Intent i = new Intent(LoginActivity.this, MapActivity.class);
                     startActivity(i);
+                    user.put("safeStatus", "NC");
+                    String token = null;
+                    token = AccessToken.getCurrentAccessToken().getToken();
+                    getFBUserName(token, user);
                 } else {
                     Toast.makeText(LoginActivity.this, "Logged in", Toast.LENGTH_SHORT)
                             .show();
@@ -127,6 +136,27 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
                 }
 
+            }
+        });
+    }
+
+    private void getFBUserName(final String token, final ParseUser user) {
+        FBClient fbClient = new FBClient();
+        fbClient.getCurrentFBUserName(token, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    user.put("username", response.getString("name"));
+                    user.saveInBackground();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                throwable.printStackTrace();
             }
         });
     }
