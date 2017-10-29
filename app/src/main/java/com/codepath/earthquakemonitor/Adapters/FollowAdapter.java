@@ -2,6 +2,7 @@ package com.codepath.earthquakemonitor.Adapters;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,9 +45,16 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ParseUser user = mFollows.get(position);
-        holder.tvName.setText(user.getUsername());
+        holder.tvName.setText(user.getUsername().substring(0, 10));
         String safeStatus = user.getString("safeStatusString");
         holder.tvStatus.setText(safeStatus);
+        if (safeStatus != null) {
+            if (safeStatus.equals("safe")) {
+                holder.tvStatus.setTextColor(Color.GREEN);
+            } else {
+                holder.tvStatus.setTextColor(Color.YELLOW);
+            }
+        }
     }
 
     @Override
