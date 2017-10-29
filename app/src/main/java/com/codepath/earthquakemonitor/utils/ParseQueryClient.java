@@ -14,6 +14,7 @@ public class ParseQueryClient {
         query.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
         //query.whereNotContainedIn("_id", ParseUser.getCurrentUser().getList("follows"));
         List<ParseUser> follows = ParseUser.getCurrentUser().getList("follows");
+        if (follows == null) return new ArrayList<>();
         HashSet<String> set = new HashSet<>();
         for (int i = 0; i < follows.size(); i++) {
             set.add(follows.get(i).getObjectId());
