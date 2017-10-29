@@ -76,7 +76,7 @@ public class ParseQueryClient {
         else
             safeStatusStr = "NC";
 
-        user.put("safeStatusString", safeStatusStr);
+        user.put("safeStatus", safeStatusStr);
         user.saveInBackground();
     }
 
