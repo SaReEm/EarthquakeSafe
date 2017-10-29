@@ -47,7 +47,7 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
         final ParseUser user = mFollows.get(position);
         String name = user.getUsername();
         holder.tvName.setText(name);
-        String safeStatus = user.getString("safeStatusString");
+        String safeStatus = user.getString("safeStatus");
         holder.tvStatus.setText(safeStatus);
         if (safeStatus != null) {
             if (safeStatus.equals("safe")) {
