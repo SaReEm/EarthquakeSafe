@@ -43,7 +43,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ParseUser user = mUsers.get(position);
         String name = user.getUsername();
-        if (name.length() > 10) name = name.substring(0, 10);
         holder.tvName.setText(name);
     }
 
