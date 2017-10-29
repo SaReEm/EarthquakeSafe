@@ -42,7 +42,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final ParseUser user = mUsers.get(position);
-        holder.tvName.setText(user.getUsername().substring(0, 10));
+        String name = user.getUsername();
+        if (name.length() > 10) name = name.substring(0, 10);
+        holder.tvName.setText(name);
     }
 
     @Override

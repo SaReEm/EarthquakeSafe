@@ -10,7 +10,7 @@ import com.codepath.earthquakemonitor.fragments.MyFollowsFragment;
 import com.codepath.earthquakemonitor.fragments.MyProfileFragment;
 
 public class UserPagerAdapter extends SmartFragmentStatePagerAdapter {
-    private String[] tabTitles = new String[] {"My Follows", "Other Users", "My Profile"};
+    private String[] tabTitles = new String[] {"My Follows", "Other Users"};
     private Context context;
 
     public UserPagerAdapter(FragmentManager fm, Context context) {
@@ -19,7 +19,7 @@ public class UserPagerAdapter extends SmartFragmentStatePagerAdapter {
     }
 
     @Override
-    public int getCount() {return 3;}
+    public int getCount() {return 2;}
 
     @Override
     public Fragment getItem(int position) {
@@ -27,9 +27,7 @@ public class UserPagerAdapter extends SmartFragmentStatePagerAdapter {
             return new AllUserFragment();
         } else if (position == 0) {
             return new MyFollowsFragment();
-        } else if (position == 2) {
-            return new MyProfileFragment();
-        }else {
+        } else {
             return null;
         }
     }

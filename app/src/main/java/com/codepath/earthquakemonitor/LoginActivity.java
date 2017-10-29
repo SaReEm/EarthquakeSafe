@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,13 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.earthquakemonitor.fragments.MyProfileFragment;
 import com.codepath.earthquakemonitor.utils.FBClient;
+import com.codepath.earthquakemonitor.utils.ImageStorageTest;
 import com.crashlytics.android.Crashlytics;
 import com.facebook.AccessToken;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import org.json.JSONException;
@@ -65,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /*MyProfileFragment myProfileFragment = MyProfileFragment.getInstance(callTest());
+                myProfileFragment.show(getSupportFragmentManager(), "test");*/
                 String userName = etName.getText().toString();
                 String password = etPassword.getText().toString();
                 if (userName == null || password == null) {
@@ -160,5 +167,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+/*    public ParseObject callTest() {
+        return ImageStorageTest.save();
+    }*/
 
 }
