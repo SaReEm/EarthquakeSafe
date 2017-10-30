@@ -12,15 +12,24 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
+    <ImageView
+    android:id="@+id/ivFollowProfilePicBorder"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    app:srcCompat="@drawable/blue_round_png"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true" />
+
     <TextView
         android:id="@+id/tvFollowName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:padding="10dp"
-        android:textSize="14sp"
         android:layout_alignTop="@+id/btn_unfollow"
-        android:layout_toEndOf="@+id/ivFollowProfilePic" />
+        android:layout_toEndOf="@+id/ivFollowProfilePic"
+        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:text="TextView"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvFollowStatus"

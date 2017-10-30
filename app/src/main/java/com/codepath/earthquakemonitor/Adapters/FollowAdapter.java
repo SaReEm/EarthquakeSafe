@@ -27,9 +27,6 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
     private Context context;
     private FollowAdapterListener mListener;
 
-    private int mRadiusImageProfile = 30; // corner radius, higher value = more rounded
-    private int mMarginImageProfile = 5; // crop margin, set to 0 for corners with no crop
-
     public interface FollowAdapterListener{
         public void onUnFollow(View view, int position);
     }
@@ -69,6 +66,9 @@ public class FollowAdapter extends RecyclerView.Adapter<FollowAdapter.ViewHolder
         Bitmap bmp = loadImageFromServer(user);
         if(bmp != null){
             holder.ivFollowProfilePic.setImageBitmap(bmp);
+        }
+        else{
+            holder.ivFollowProfilePic.setImageResource(R.drawable.profile_png);
         }
     }
 
