@@ -20,7 +20,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllUserFragment extends Fragment {
+public class AllUserFragment extends BaseFragment {
     UserAdapter userAdapter;
     public List<ParseUser> users;
     RecyclerView rvUsers;
@@ -42,6 +42,7 @@ public class AllUserFragment extends Fragment {
         return v;
     }
 
+    @Override
     public void populateUsers() throws ParseException {
         users.clear();
         users.addAll(ParseQueryClient.getAllUsers());
