@@ -19,10 +19,12 @@ import android.widget.ProgressBar;
 import android.widget.Switch;
 
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -91,16 +93,28 @@ public class ProfileActivity extends AppCompatActivity
 
     private void loadImageFromStorage(String path)
     {
-        try {
-            File f=new File(path, "profile.jpg");
-            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+            ParseUser user = ParseUser.getCurrentUser();
+            byte[] data = new byte[0];
+            try {
+                data = ((ParseFile) user.get("file")).getData();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Bitmap bmp = BitmapFactory.decodeByteArray(data, 0,data.length);
             ImageView img=(ImageView)findViewById(R.id.ivProfilePic);
-            img.setImageBitmap(b);
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
+            img.setImageBitmap(bmp);
+
+//        try {
+
+//            File f=new File(path, "profile.jpg");
+//            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+//            ImageView img=(ImageView)findViewById(R.id.ivProfilePic);
+//            img.setImageBitmap(b);
+//        }
+//        catch (FileNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
@@ -158,6 +172,18 @@ public class ProfileActivity extends AppCompatActivity
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         // Create imageDir
         File mypath=new File(directory,"profile.jpg");
+
+        ParseFile parsefile = new ParseFile(mypath);
+        try {
+            parsefile.save();
+
+            ParseObject object = new ParseObject("TestObject");
+            ParseUser user = ParseUser.getCurrentUser();
+            user.put("file", parsefile);
+            user.saveInBackground();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         FileOutputStream fos = null;
         try {
