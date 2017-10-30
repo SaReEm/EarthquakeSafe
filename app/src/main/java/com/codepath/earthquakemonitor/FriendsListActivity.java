@@ -1,6 +1,7 @@
 package com.codepath.earthquakemonitor;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,7 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
 {
     private UserPagerAdapter userPagerAdapter;
 
-    private Button btnInvite;
+    private FloatingActionButton btnInvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,7 +52,7 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
         setSupportActionBar(toolbar);
 
         // Send out the app's github url to invite friends
-        btnInvite = (Button) findViewById(R.id.btnInvite);
+        btnInvite = (FloatingActionButton) findViewById(R.id.btnInvite);
         btnInvite.setOnClickListener(new View.OnClickListener()
         {
             @Override
