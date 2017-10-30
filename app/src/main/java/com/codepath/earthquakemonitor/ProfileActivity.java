@@ -22,12 +22,12 @@ import android.widget.TextView;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
 import com.parse.ParseException;
 import com.parse.ParseFile;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity
@@ -37,20 +37,19 @@ public class ProfileActivity extends AppCompatActivity
     private Switch swMySafeStatus;
     private ImageView ivProfile;
     private TextView tvName;
-    private ParseUser currentUser;
 
 
     ProgressBar pb;
     // PICK_PHOTO_CODE is a constant integer
     public final static int PICK_PHOTO_CODE = 1046;
-    //private final String SAVING_DIR = "/data/user/0/com.codepath.earthquakemonitor/app_imageDir/";
+    private final String SAVING_DIR = "/data/user/0/com.codepath.earthquakemonitor/app_imageDir/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        currentUser = ParseUser.getCurrentUser();
+        ParseUser currentUser = ParseUser.getCurrentUser();
 
         tvName = findViewById(R.id.tvProfileName);
         String name = currentUser.getString("username");
@@ -107,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity
     try {
         byte[] data = new byte[0];
         try {
+            ParseUser currentUser = ParseUser.getCurrentUser();
             ParseFile file = (ParseFile) currentUser.get("file");
             if(file != null) {
                 data = file.getData();
@@ -182,6 +182,19 @@ public class ProfileActivity extends AppCompatActivity
         }
 
         protected void onPostExecute(Bitmap bitmap) {
+
+            File path = new File(SAVING_DIR,"/profile.jpg");
+            ParseFile parsefile = new ParseFile(path);
+            try {
+                parsefile.save();
+
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                currentUser.put("file", parsefile);
+                currentUser.saveInBackground();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             // This method is executed in the UIThread
             // with access to the result of the long running task
             // Hide the progress bar
@@ -197,33 +210,22 @@ public class ProfileActivity extends AppCompatActivity
         // Create imageDir
         File mypath=new File(directory,"profile.jpg");
 
-        ParseFile parsefile = new ParseFile(mypath);
+        FileOutputStream fos = null;
         try {
-            parsefile.save();
-
-            ParseObject object = new ParseObject("TestObject");
-            currentUser.put("file", parsefile);
-            currentUser.saveInBackground();
-        } catch (ParseException e) {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-//        FileOutputStream fos = null;
-//        try {
-//            fos = new FileOutputStream(mypath);
-//            // Use the compress method on the BitMap object to write image to the OutputStream
-//            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                fos.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        String path = directory.getAbsolutePath();
-//        Log.d(TAG, path);
+        String path = directory.getAbsolutePath();
+        Log.d(TAG, path);
         return bitmapImage;
     }
 
