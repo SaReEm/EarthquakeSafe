@@ -22,9 +22,8 @@
         android:text="TextView"
         android:textSize="14sp"
         android:textAlignment="center"
-        android:layout_alignParentTop="true"
         android:layout_toStartOf="@+id/btn_unfollow"
-        android:layout_alignBottom="@+id/btn_unfollow" />
+        android:layout_alignBaseline="@+id/btn_unfollow" />
 
     <Button
         android:id="@+id/btn_unfollow"
