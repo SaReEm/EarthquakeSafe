@@ -1,18 +1,17 @@
 package com.codepath.earthquakemonitor.fragments;
 
 import android.app.Activity;
-import android.net.Uri;
-import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
@@ -27,6 +26,7 @@ import org.parceler.Parcels;
 
 public class EarthquakeActionFragment extends DialogFragment
 {
+    private final String TAG = "EarthquakeActionTAG";
     private ShareButton btnFbShare;
     private TextView tvUSGS;
 
@@ -42,7 +42,7 @@ public class EarthquakeActionFragment extends DialogFragment
 
         // Get the earthquake object
         final Earthquake earthquake = Parcels.unwrap(getArguments().getParcelable("Earthquake"));
-        Toast.makeText(getContext(),earthquake.getUrl(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, earthquake.getUrl());
 
         // Define the share content as the usgs url
         ShareLinkContent content = new ShareLinkContent.Builder()
@@ -60,7 +60,7 @@ public class EarthquakeActionFragment extends DialogFragment
             @Override
             public void onClick(View view)
             {
-                Toast.makeText(getActivity(),"Share", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Share");
             }
         });
 
@@ -70,7 +70,7 @@ public class EarthquakeActionFragment extends DialogFragment
             public void onClick(View view)
             {
                 // Center the current earthquake on the map
-                Toast.makeText(getActivity(), "Focus", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Focus");
                 // Transfer the clicked earthquake's lat/long to the mapActivity
                 ((EarthquakeListFragment.EarthquakeSelectedListener) getActivity()).onEarthquakeClicked(earthquake);
 

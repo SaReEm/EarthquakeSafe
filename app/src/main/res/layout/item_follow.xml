@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/ivFollowProfilePic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/profile_png"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+    android:id="@+id/ivFollowProfilePicBorder"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    app:srcCompat="@drawable/blue_round_png"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/tvFollowName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_alignBottom="@+id/tvFollowStatus"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/tvFollowStatus"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/btn_unfollow"
+        android:layout_toEndOf="@+id/ivFollowProfilePic"
         android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:text="TextView"
         android:textSize="14sp" />
 
     <TextView
@@ -24,6 +40,7 @@
         android:textAlignment="center"
         android:layout_toStartOf="@+id/btn_unfollow"
         android:layout_alignBaseline="@+id/btn_unfollow" />
+
 
     <Button
         android:id="@+id/btn_unfollow"
@@ -39,4 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@android:color/holo_blue_light"/>
+
+
 </RelativeLayout>

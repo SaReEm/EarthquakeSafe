@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
-import com.codepath.earthquakemonitor.Adapters.UserAdapter;
 import com.codepath.earthquakemonitor.FriendsListActivity;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
@@ -21,7 +20,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFollowsFragment extends Fragment{
+public class MyFollowsFragment extends BaseFragment{
     FollowAdapter followAdapter;
     public List<ParseUser> users;
     RecyclerView rvUsers;
@@ -44,7 +43,7 @@ public class MyFollowsFragment extends Fragment{
         return v;
     }
 
-
+    @Override
     public void populateUsers() throws ParseException {
         users.clear();
         users.addAll(ParseQueryClient.getFollows());
