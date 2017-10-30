@@ -132,7 +132,9 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentDistance = progress;
                 modifiedDistance = true;
-                tvDistanceDisplay.setText(progress + " km");
+                int distMiles = ConversionsUtils.kmToMiles(progress);
+                String distString = distMiles + " miles";
+                tvDistanceDisplay.setText(distString);
             }
 
             @Override
@@ -151,7 +153,9 @@ public class FilterDialogFragment extends DialogFragment implements DatePickerFr
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 currentDepth = progress;
                 modifiedDepth = true;
-                tvDepthDisplay.setText(progress + " km");
+                int depthMiles = ConversionsUtils.kmToMiles(progress);
+                String distString = depthMiles + " miles";
+                tvDepthDisplay.setText(distString);
 
             }
 
