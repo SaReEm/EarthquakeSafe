@@ -17,8 +17,12 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,6 +36,8 @@ public class ProfileActivity extends AppCompatActivity
     private Button btnLogout;
     private Switch swMySafeStatus;
     private ImageView ivProfile;
+    private TextView tvName;
+
 
     ProgressBar pb;
     // PICK_PHOTO_CODE is a constant integer
@@ -43,6 +49,13 @@ public class ProfileActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        tvName = findViewById(R.id.tvProfileName);
+        String name = currentUser.getString("username");
+        if(name != null){
+            tvName.setText(name);
+        }
 
         // Handle log out onClick
         btnLogout = findViewById(R.id.btnLogout);
@@ -68,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity
         // Load the selected image into a preview
         ivProfile = (ImageView) findViewById(R.id.ivProfilePic);
         pb = (ProgressBar) findViewById(R.id.pbLoading);
-        loadImageFromStorage(SAVING_DIR);
+        loadImageFromServer();
     }
 
     public void onClickProfile(View view) {
@@ -89,9 +102,34 @@ public class ProfileActivity extends AppCompatActivity
         }
     }
 
+    private void loadImageFromServer(){
+    try {
+        byte[] data = new byte[0];
+        try {
+            ParseUser currentUser = ParseUser.getCurrentUser();
+            ParseFile file = (ParseFile) currentUser.get("file");
+            if(file != null) {
+                data = file.getData();
+                ImageView img = (ImageView) findViewById(R.id.ivProfilePic);
+                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                img.setImageBitmap(bmp);
+            }
+            else {
+                Log.d(TAG, "No file on server");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+
+}
     private void loadImageFromStorage(String path)
     {
         try {
+
             File f=new File(path, "profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             ImageView img=(ImageView)findViewById(R.id.ivProfilePic);
@@ -144,6 +182,19 @@ public class ProfileActivity extends AppCompatActivity
         }
 
         protected void onPostExecute(Bitmap bitmap) {
+
+            File path = new File(SAVING_DIR,"/profile.jpg");
+            ParseFile parsefile = new ParseFile(path);
+            try {
+                parsefile.save();
+
+                ParseUser currentUser = ParseUser.getCurrentUser();
+                currentUser.put("file", parsefile);
+                currentUser.saveInBackground();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             // This method is executed in the UIThread
             // with access to the result of the long running task
             // Hide the progress bar

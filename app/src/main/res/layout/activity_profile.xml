@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/ivProfilePic"
         android:layout_below="@id/tvProfileName"
-        android:src="@drawable/profile"
+        android:src="@drawable/profile_png"
         android:layout_width="180dp"
         android:layout_height="200dp"
         android:clickable="true"
