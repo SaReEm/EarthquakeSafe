@@ -40,12 +40,11 @@
         </android.support.design.widget.AppBarLayout>
     </LinearLayout>
 
-    <Button
-        android:background="@drawable/rounded_shape"
+    <android.support.design.widget.FloatingActionButton
+        android:src="@drawable/ic_invite"
         android:id="@+id/btnInvite"
         android:layout_width="@dimen/btnSigninWidth"
         android:layout_height="wrap_content"
-        android:text="Invite Friend"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp" />
