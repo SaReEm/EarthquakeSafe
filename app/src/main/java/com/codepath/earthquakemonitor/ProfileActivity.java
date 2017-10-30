@@ -17,13 +17,17 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ProfileActivity extends AppCompatActivity
@@ -32,17 +36,27 @@ public class ProfileActivity extends AppCompatActivity
     private Button btnLogout;
     private Switch swMySafeStatus;
     private ImageView ivProfile;
+    private TextView tvName;
+    private ParseUser currentUser;
+
 
     ProgressBar pb;
     // PICK_PHOTO_CODE is a constant integer
     public final static int PICK_PHOTO_CODE = 1046;
-    private final String SAVING_DIR = "/data/user/0/com.codepath.earthquakemonitor/app_imageDir/";
+    //private final String SAVING_DIR = "/data/user/0/com.codepath.earthquakemonitor/app_imageDir/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        currentUser = ParseUser.getCurrentUser();
+
+        tvName = findViewById(R.id.tvProfileName);
+        String name = currentUser.getString("username");
+        if(name != null){
+            tvName.setText(name);
+        }
 
         // Handle log out onClick
         btnLogout = findViewById(R.id.btnLogout);
@@ -68,7 +82,7 @@ public class ProfileActivity extends AppCompatActivity
         // Load the selected image into a preview
         ivProfile = (ImageView) findViewById(R.id.ivProfilePic);
         pb = (ProgressBar) findViewById(R.id.pbLoading);
-        loadImageFromStorage(SAVING_DIR);
+        loadImageFromServer();
     }
 
     public void onClickProfile(View view) {
@@ -89,9 +103,33 @@ public class ProfileActivity extends AppCompatActivity
         }
     }
 
+    private void loadImageFromServer(){
+    try {
+        byte[] data = new byte[0];
+        try {
+            ParseFile file = (ParseFile) currentUser.get("file");
+            if(file != null) {
+                data = file.getData();
+                ImageView img = (ImageView) findViewById(R.id.ivProfilePic);
+                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                img.setImageBitmap(bmp);
+            }
+            else {
+                Log.d(TAG, "No file on server");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+
+}
     private void loadImageFromStorage(String path)
     {
         try {
+
             File f=new File(path, "profile.jpg");
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
             ImageView img=(ImageView)findViewById(R.id.ivProfilePic);
@@ -159,22 +197,33 @@ public class ProfileActivity extends AppCompatActivity
         // Create imageDir
         File mypath=new File(directory,"profile.jpg");
 
-        FileOutputStream fos = null;
+        ParseFile parsefile = new ParseFile(mypath);
         try {
-            fos = new FileOutputStream(mypath);
-            // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
+            parsefile.save();
+
+            ParseObject object = new ParseObject("TestObject");
+            currentUser.put("file", parsefile);
+            currentUser.saveInBackground();
+        } catch (ParseException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-        String path = directory.getAbsolutePath();
-        Log.d(TAG, path);
+
+//        FileOutputStream fos = null;
+//        try {
+//            fos = new FileOutputStream(mypath);
+//            // Use the compress method on the BitMap object to write image to the OutputStream
+//            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                fos.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        String path = directory.getAbsolutePath();
+//        Log.d(TAG, path);
         return bitmapImage;
     }
 
