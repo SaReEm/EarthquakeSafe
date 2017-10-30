@@ -21,7 +21,7 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyFollowsFragment extends Fragment{
+public class MyFollowsFragment extends BaseFragment{
     FollowAdapter followAdapter;
     public List<ParseUser> users;
     RecyclerView rvUsers;
@@ -44,7 +44,7 @@ public class MyFollowsFragment extends Fragment{
         return v;
     }
 
-
+    @Override
     public void populateUsers() throws ParseException {
         users.clear();
         users.addAll(ParseQueryClient.getFollows());

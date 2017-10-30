@@ -2,6 +2,8 @@ package com.codepath.earthquakemonitor;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.codepath.earthquakemonitor.Adapters.FollowAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserAdapter;
 import com.codepath.earthquakemonitor.Adapters.UserPagerAdapter;
 import com.codepath.earthquakemonitor.fragments.AllUserFragment;
+import com.codepath.earthquakemonitor.fragments.BaseFragment;
 import com.codepath.earthquakemonitor.fragments.MyFollowsFragment;
 import com.codepath.earthquakemonitor.utils.ParseQueryClient;
 import com.parse.ParseException;
@@ -32,6 +35,8 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
 
     private Button btnInvite;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -41,6 +46,28 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         userPagerAdapter = new UserPagerAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(userPagerAdapter);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+            @Override
+            public void onPageScrolled(final int position, final float v, final int i2) {
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                BaseFragment fragment = (BaseFragment) userPagerAdapter.getRegisteredFragment(position);
+                if (fragment != null) {
+                    try {
+                        fragment.populateUsers();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int position) {
+            }
+        });
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -63,6 +90,7 @@ public class FriendsListActivity extends AppCompatActivity  implements FollowAda
                 startActivity(Intent.createChooser(shareIntent, "Share link using"));
             }
         });
+
     }
 
     @Override
