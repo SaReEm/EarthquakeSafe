@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303f9f</color>
     <color name="btnLoginBlue">#be72bfe4</color>
+    <color name="btnInvitePink">#f260b3</color>
     <color name="smallEarthquakeGreen">#FF518209</color>
     <color name="mediumEarthquakeOrange">#f0700c</color>
 </resources>

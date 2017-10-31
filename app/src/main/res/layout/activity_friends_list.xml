@@ -41,6 +41,7 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
+        app:backgroundTint="@color/btnInvitePink"
         android:src="@drawable/ic_invite"
         android:id="@+id/btnInvite"
         android:layout_width="@dimen/btnSigninWidth"
