@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.codepath.earthquakemonitor.utils.ConversionsUtils;
 import com.codepath.earthquakemonitor.R;
 import com.codepath.earthquakemonitor.models.Earthquake;
+import com.codepath.earthquakemonitor.utils.ConversionsUtils;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,7 @@ public class EarthquakeAdapter extends RecyclerView.Adapter<EarthquakeAdapter.Vi
         if (earthquake.getMag() <=4 ) {
             holder.tvMagnitude.setTextColor(Color.GREEN);
         } else if (earthquake.getMag() > 4 && earthquake.getMag() < 6) {
-            holder.tvMagnitude.setTextColor(Color.YELLOW);
+            holder.tvMagnitude.setTextColor(Color.parseColor("#f0700c"));
         } else {
             holder.tvMagnitude.setTextColor(Color.RED);
         }
