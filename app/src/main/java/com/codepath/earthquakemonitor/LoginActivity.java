@@ -33,6 +33,8 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
+import io.branch.referral.Branch;
+import io.branch.referral.BranchError;
 import io.fabric.sdk.android.Fabric;
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,6 +65,18 @@ public class LoginActivity extends AppCompatActivity {
         moveAnim.setDuration(1000);
         moveAnim.setInterpolator(new BounceInterpolator());
         moveAnim.start();
+
+        // Branch init
+        Branch.getInstance().initSession(new Branch.BranchReferralInitListener() {
+            @Override
+            public void onInitFinished(JSONObject referringParams, BranchError error) {
+                if (error == null) {
+                    Log.i("BRANCH SDK", referringParams.toString());
+                } else {
+                    Log.i("BRANCH SDK", error.getMessage());
+                }
+            }
+        }, this.getIntent().getData(), this);
 
         // Handle sigin button onClick
         Button btnLogIn = findViewById(R.id.btn_login);
@@ -105,6 +119,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        this.setIntent(intent);
     }
 
     @Override

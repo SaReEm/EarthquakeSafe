@@ -1,17 +1,22 @@
 package com.codepath.earthquakemonitor;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 import com.codepath.earthquakemonitor.models.User;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 
+import io.branch.referral.Branch;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 
-public class ParseApplication extends Application {
+public class ParseApplication extends MultiDexApplication
+{
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,9 +45,17 @@ public class ParseApplication extends Application {
                 .server("https://earthquakesafe.herokuapp.com/parse/").build());
         ParseFacebookUtils.initialize(this);
 
+        Branch.getAutoInstance(this);
+
         // New test creation of object below
         /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();*/
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 }

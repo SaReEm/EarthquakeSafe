@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.codepath.earthquakemonitor"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="2"
+    android:versionName="2.0">
 
     <permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
@@ -22,7 +23,7 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS" />-->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -67,11 +68,25 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="earthquakesafe" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="c105.app.link" />
+                <data android:scheme="https" android:host="c105-alternate.app.link" />
             </intent-filter>
         </activity>
         <activity android:name=".SignUpActivity" />
@@ -95,6 +110,9 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
+        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_gnwIssyiN8djzT0Lo8bAooekAElbpcG0" />
+        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_agrIywwiP6bhsR5Hm3aO3epbwFlcdpXf" />
+        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />
 
         <provider android:authorities="com.facebook.app.FacebookContentProvider232398803903186"
             android:name="com.facebook.FacebookContentProvider"
