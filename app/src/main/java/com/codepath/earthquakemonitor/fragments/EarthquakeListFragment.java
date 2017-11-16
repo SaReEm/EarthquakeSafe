@@ -330,6 +330,7 @@ public class EarthquakeListFragment extends Fragment
             LatLng latLng = new LatLng(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
             map.animateCamera(cameraUpdate);
+            //Toast.makeText(getContext(),"onResume", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "Current location was null, enable GPS on emulator!");
         }
